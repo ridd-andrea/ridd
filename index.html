@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Rotta Bussola</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --panel: #0d1520;
+    --border: #1a3a5c;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --text: #c8e6ff;
+    --dim: #4a7090;
+    --glow: 0 0 20px rgba(0,212,255,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 40px;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(0,100,180,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(0,212,255,0.08) 0%, transparent 50%);
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 28px;
+    animation: fadeDown 0.8s ease;
+  }
+
+  header h1 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    color: var(--accent);
+    text-shadow: var(--glow);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  header p {
+    color: var(--dim);
+    font-size: 0.75rem;
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 440px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+
+  .gps-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #003d5c, #00203a);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--glow);
+  }
+
+  .gps-btn:active { transform: scale(0.98); }
+  .gps-btn:hover  { background: linear-gradient(135deg, #005580, #002d50); }
+
+  .gps-status {
+    margin-top: 12px;
+    font-size: 0.72rem;
+    color: var(--dim);
+    text-align: center;
+    min-height: 18px;
+    transition: color 0.3s;
+  }
+
+  .gps-status.ok  { color: #00ff88; }
+  .gps-status.err { color: #ff4444; }
+
+  .coords-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    background: rgba(0,20,40,0.8);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(0,212,255,0.2);
+  }
+
+  input::placeholder { color: var(--dim); }
+
+  .address-input { margin-top: 14px; }
+
+  .address-row { display: flex; gap: 8px; }
+  .address-row input { flex: 1; }
+
+  .small-btn {
+    background: rgba(0,212,255,0.1);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .small-btn:active { transform: scale(0.97); }
+  .small-btn:hover  { background: rgba(0,212,255,0.2); }
+
+  .calc-btn {
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(135deg, #1a3a00, #0f2500);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0,255,136,0.2);
+    animation: fadeUp 0.6s 0.2s ease both;
+    margin-bottom: 16px;
+  }
+
+  .calc-btn:hover  { background: linear-gradient(135deg, #254a00, #172f00); }
+  .calc-btn:active { transform: scale(0.98); }
+
+  /* BUSSOLA */
+  .compass-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .compass-outer {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 10px auto 20px;
+  }
+
+  .compass-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: radial-gradient(circle at 50% 50%, #0d1e30, #060c12);
+    box-shadow: 0 0 40px rgba(0,212,255,0.15), inset 0 0 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compass-ring::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,212,255,0.15);
+  }
+
+  .cardinal {
+    position: absolute;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    transform: translate(-50%, -50%);
+  }
+
+  .c-n { top: 12%; left: 50%; }
+  .c-s { top: 88%; left: 50%; }
+  .c-e { top: 50%; left: 88%; }
+  .c-w { top: 50%; left: 12%; }
+
+  .needle-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .needle {
+    position: relative;
+    width: 4px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .needle-top {
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--accent2), #ff9960);
+    border-radius: 4px 4px 0 0;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  }
+
+  .needle-bottom {
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(to bottom, #223344, #111e2a);
+    border-radius: 0 0 4px 4px;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  }
+
+  .needle-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    z-index: 2;
+  }
+
+  /* RISULTATO */
+  .result-box {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 440px;
+    display: none;
+    animation: fadeUp 0.5s ease;
+  }
+
+  .result-box.visible { display: block; }
+
+  .bearing-big {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    font-weight: 900;
+    color: var(--accent2);
+    text-shadow: 0 0 30px rgba(255,107,53,0.5);
+    line-height: 1;
+  }
+
+  .bearing-label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .info-item {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .info-item .val {
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  .info-item .lbl {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-top: 0;
+    text-transform: uppercase;
+  }
+
+  .error-msg {
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 8px;
+    min-height: 18px;
+  }
+
+  .addr-box {
+    display: none;
+    margin-top: 14px;
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .addr-label {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .addr-text {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(0,212,255,0.3);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .sep {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    margin: 14px 0;
+    position: relative;
+  }
+
+  .sep::before, .sep::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .sep::before { left: 0; }
+  .sep::after  { right: 0; }
+
+  /* SOLE E LUNA */
+  .sky-box {
+    display: none;
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .sky-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .sky-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sky-item {
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .sky-item.sun {
+    background: linear-gradient(135deg, rgba(255,180,0,0.12), rgba(255,120,0,0.06));
+    border: 1px solid rgba(255,180,0,0.3);
+  }
+  .sky-item.moon {
+    background: linear-gradient(135deg, rgba(180,210,255,0.1), rgba(100,150,220,0.06));
+    border: 1px solid rgba(180,210,255,0.25);
+  }
+  .sky-item.hidden-obj { opacity: 0.45; }
+  .sky-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 6px; }
+  .sky-deg {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .sky-item.sun  .sky-deg { color: #ffb800; text-shadow: 0 0 14px rgba(255,180,0,0.5); }
+  .sky-item.moon .sky-deg { color: #aad4ff; text-shadow: 0 0 14px rgba(160,210,255,0.4); }
+  .sky-dir  { font-size: 0.7rem;  letter-spacing: 2px; margin-top: 3px; color: var(--dim); }
+  .sky-elev { font-size: 0.65rem; letter-spacing: 1px; margin-top: 5px; color: var(--dim); }
+  .sky-status {
+    font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    margin-top: 6px; font-weight: bold;
+  }
+  .sky-item.sun  .sky-status { color: #ffb800; }
+  .sky-item.moon .sky-status { color: #aad4ff; }
+  .sky-item.hidden-obj .sky-status { color: var(--dim); }
+
+  /* SCARTO RISPETTO A SOLE/LUNA */
+  .offset-box {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .offset-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.08rem;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .offset-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .offset-item {
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .offset-item.sun {
+    background: linear-gradient(135deg, rgba(255,180,0,0.12), rgba(255,120,0,0.06));
+    border: 1px solid rgba(255,180,0,0.3);
+  }
+
+  .offset-item.moon {
+    background: linear-gradient(135deg, rgba(180,210,255,0.1), rgba(100,150,220,0.06));
+    border: 1px solid rgba(180,210,255,0.25);
+  }
+
+  .offset-item.hidden-obj { opacity: 0.45; }
+
+  .offset-icon { font-size: 1.4rem; line-height: 1; margin-bottom: 6px; }
+
+  .offset-deg {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .offset-item.sun  .offset-deg { color: #ffb800; text-shadow: 0 0 14px rgba(255,180,0,0.5); }
+  .offset-item.moon .offset-deg { color: #aad4ff; text-shadow: 0 0 14px rgba(160,210,255,0.4); }
+  .offset-item.hidden-obj .offset-deg { color: var(--dim); }
+
+  .offset-arrow {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    margin-top: 4px;
+    font-weight: bold;
+  }
+
+  .offset-item.sun  .offset-arrow { color: #ffb800; }
+  .offset-item.moon .offset-arrow { color: #aad4ff; }
+  .offset-item.hidden-obj .offset-arrow { color: var(--dim); }
+
+  .offset-label {
+    font-size: clamp(0.55rem, 2.2vw, 0.7rem);
+    letter-spacing: 1px;
+    color: var(--dim);
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>&#9651; Rotta Bussola</h1>
+  <p>NAVIGAZIONE IN LINEA RETTA &middot; GRADI AZIMUT</p>
+</header>
+
+<!-- POSIZIONE CORRENTE -->
+<div class="card" style="animation-delay:0.1s">
+  <div class="card-title">&#9670; Posizione Corrente</div>
+  <button class="gps-btn" onclick="getGPS()">
+    <span id="gpsIcon">&#9678;</span>
+    <span id="gpsBtnText">ACQUISISCI POSIZIONE GPS</span>
+  </button>
+  <div class="gps-status" id="gpsStatus">In attesa del GPS...</div>
+  <div class="coords-row">
+    <div>
+      <label>Latitudine</label>
+      <input type="number" id="myLat" placeholder="es. 45.4642" step="any" oninput="clearResult()">
+    </div>
+    <div>
+      <label>Longitudine</label>
+      <input type="number" id="myLon" placeholder="es. 9.1900" step="any" oninput="clearResult()">
+    </div>
+  </div>
+  <!-- Indirizzo rilevato dal GPS -->
+  <div class="addr-box" id="myAddressBox">
+    <div class="addr-label">&#9673; Indirizzo Rilevato</div>
+    <div class="addr-text" id="myAddressText"></div>
+  </div>
+</div>
+
+<!-- DESTINAZIONE -->
+<div class="card" style="animation-delay:0.2s">
+  <div class="card-title">&#9658; Destinazione</div>
+
+  <div class="address-input">
+    <label>Cerca per indirizzo</label>
+    <div class="address-row">
+      <input type="text" id="addressInput" placeholder="es. Torre Eiffel, Parigi" onkeydown="if(event.key==='Enter') geocode()">
+      <button class="small-btn" onclick="geocode()">CERCA</button>
+    </div>
+  </div>
+
+  <div class="sep">oppure</div>
+
+  <div class="coords-row">
+    <div>
+      <label>Latitudine</label>
+      <input type="number" id="destLat" placeholder="es. 48.8584" step="any" oninput="clearResult()">
+    </div>
+    <div>
+      <label>Longitudine</label>
+      <input type="number" id="destLon" placeholder="es. 2.2945" step="any" oninput="clearResult()">
+    </div>
+  </div>
+  <div class="error-msg" id="geoError"></div>
+</div>
+
+<!-- CALCOLA -->
+<button class="calc-btn" onclick="calculate()">&#9654; CALCOLA ROTTA</button>
+
+<!-- RISULTATO -->
+<div class="result-box" id="resultBox">
+  <div class="bearing-big" id="bearingVal">---&deg;</div>
+  <div class="bearing-label" id="bearingDir">ROTTA BUSSOLA</div>
+
+  <div class="compass-wrap">
+    <div class="compass-outer">
+      <div class="compass-ring">
+        <span class="cardinal c-n">N</span>
+        <span class="cardinal c-s">S</span>
+        <span class="cardinal c-e">E</span>
+        <span class="cardinal c-w">W</span>
+        <div class="needle-wrap" id="needleWrap">
+          <div class="needle">
+            <div class="needle-top"></div>
+            <div class="needle-bottom"></div>
+            <div class="needle-center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="val" id="distVal">&mdash;</div>
+      <div class="lbl">Distanza</div>
+    </div>
+    <div class="info-item">
+      <div class="val" id="directionVal">&mdash;</div>
+      <div class="lbl">Direzione</div>
+    </div>
+    <div class="info-item">
+      <div class="val" id="fromVal">&mdash;</div>
+      <div class="lbl">Da</div>
+    </div>
+    <div class="info-item">
+      <div class="val" id="toVal">&mdash;</div>
+      <div class="lbl">A</div>
+    </div>
+  
+  <!-- SOLE E LUNA -->
+  <div class="sky-box" id="skyBox">
+    <div class="sky-title">Posizione Corpo Celeste</div>
+    <div class="sky-grid">
+      <div class="sky-item sun" id="sunItem">
+        <div class="sky-icon">&#9728;</div>
+        <div class="sky-deg" id="sunDeg">&mdash;</div>
+        <div class="sky-dir" id="sunDir">&mdash;</div>
+        <div class="sky-elev" id="sunElev">Elevazione: &mdash;</div>
+        <div class="sky-status" id="sunStatus">&mdash;</div>
+      </div>
+      <div class="sky-item moon" id="moonItem">
+        <div class="sky-icon">&#9790;</div>
+        <div class="sky-deg" id="moonDeg">&mdash;</div>
+        <div class="sky-dir" id="moonDir">&mdash;</div>
+        <div class="sky-elev" id="moonElev">Elevazione: &mdash;</div>
+        <div class="sky-status" id="moonStatus">&mdash;</div>
+      </div>
+    </div>
+
+    <!-- SCARTO RISPETTO ALLA ROTTA -->
+    <div class="offset-box" id="offsetBox">
+      <div class="offset-title">Scarto dalla Rotta</div>
+      <div class="offset-grid">
+        <div class="offset-item sun" id="sunOffsetItem">
+          <div class="offset-icon">&#9728;</div>
+          <div class="offset-deg" id="sunOffsetDeg">&mdash;</div>
+          <div class="offset-arrow" id="sunOffsetArrow">&mdash;</div>
+          <div class="offset-label" id="sunOffsetLabel">Sole</div>
+        </div>
+        <div class="offset-item moon" id="moonOffsetItem">
+          <div class="offset-icon">&#9790;</div>
+          <div class="offset-deg" id="moonOffsetDeg">&mdash;</div>
+          <div class="offset-arrow" id="moonOffsetArrow">&mdash;</div>
+          <div class="offset-label" id="moonOffsetLabel">Luna</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  var myLatVal = null, myLonVal = null;
+
+  // === GPS ===
+  function getGPS() {
+    if (!navigator.geolocation) {
+      setGpsStatus('GPS non supportato da questo browser', 'err');
+      return;
+    }
+
+    document.getElementById('gpsBtnText').textContent = 'ACQUISIZIONE IN CORSO...';
+    document.getElementById('gpsIcon').innerHTML = '<span class="spinner"></span>';
+    setGpsStatus('Ricerca segnale GPS...', '');
+
+    navigator.geolocation.getCurrentPosition(
+      function(pos) {
+        myLatVal = pos.coords.latitude;
+        myLonVal = pos.coords.longitude;
+        document.getElementById('myLat').value = myLatVal.toFixed(6);
+        document.getElementById('myLon').value = myLonVal.toFixed(6);
+        var acc = Math.round(pos.coords.accuracy);
+        setGpsStatus('Posizione acquisita  |  Accuratezza: +/- ' + acc + ' m', 'ok');
+        document.getElementById('gpsBtnText').textContent = 'AGGIORNA POSIZIONE GPS';
+        document.getElementById('gpsIcon').textContent = '\u25CE';
+        clearResult();
+        reverseGeocode(myLatVal, myLonVal);
+      },
+      function(err) {
+        var msgs = { 1: 'Permesso GPS negato', 2: 'Posizione non disponibile', 3: 'Timeout GPS' };
+        setGpsStatus('Errore: ' + (msgs[err.code] || 'Errore GPS'), 'err');
+        document.getElementById('gpsBtnText').textContent = 'RIPROVA GPS';
+        document.getElementById('gpsIcon').textContent = '\u25CE';
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 5000 }
+    );
+  }
+
+  function setGpsStatus(msg, cls) {
+    var el = document.getElementById('gpsStatus');
+    el.textContent = msg;
+    el.className = 'gps-status ' + (cls || '');
+  }
+
+  // === REVERSE GEOCODING ===
+  async function reverseGeocode(lat, lon) {
+    var box = document.getElementById('myAddressBox');
+    var txt = document.getElementById('myAddressText');
+    box.style.display = 'block';
+    txt.textContent = 'Ricerca indirizzo...';
+    txt.style.color = 'var(--dim)';
+    try {
+      var url = 'https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json';
+      var res = await fetch(url, { headers: { 'Accept-Language': 'it' } });
+      var data = await res.json();
+      if (data && data.display_name) {
+        var a = data.address || {};
+        var parts = [
+          a.road ? (a.road + (a.house_number ? ' ' + a.house_number : '')) : null,
+          a.suburb || a.neighbourhood || null,
+          a.city || a.town || a.village || a.municipality || null,
+          a.county || null,
+          a.state || null,
+          a.country || null
+        ].filter(Boolean);
+        txt.textContent = parts.length ? parts.join(', ') : data.display_name;
+        txt.style.color = 'var(--accent)';
+      } else {
+        txt.textContent = 'Indirizzo non trovato';
+        txt.style.color = 'var(--dim)';
+      }
+    } catch(e) {
+      txt.textContent = 'Impossibile ottenere l\'indirizzo';
+      txt.style.color = '#ff6644';
+    }
+  }
+
+  // === GEOCODING DESTINAZIONE ===
+  async function geocode() {
+    var q = document.getElementById('addressInput').value.trim();
+    var errEl = document.getElementById('geoError');
+    errEl.textContent = '';
+    if (!q) {
+      errEl.style.color = '#ff4444';
+      errEl.textContent = 'Inserisci un indirizzo.';
+      return;
+    }
+    errEl.style.color = 'var(--dim)';
+    errEl.textContent = 'Ricerca in corso...';
+    try {
+      var url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(q) + '&format=json&limit=1';
+      var res = await fetch(url, { headers: { 'Accept-Language': 'it' } });
+      var data = await res.json();
+      if (!data.length) {
+        errEl.style.color = '#ff4444';
+        errEl.textContent = 'Indirizzo non trovato. Prova a essere piu\' specifico.';
+        return;
+      }
+      var place = data[0];
+      document.getElementById('destLat').value = parseFloat(place.lat).toFixed(6);
+      document.getElementById('destLon').value = parseFloat(place.lon).toFixed(6);
+      errEl.style.color = '#00ff88';
+      errEl.textContent = 'Trovato: ' + place.display_name.substring(0, 70);
+      clearResult();
+    } catch(e) {
+      errEl.style.color = '#ff4444';
+      errEl.textContent = 'Errore di rete durante la geocodifica.';
+    }
+  }
+
+  // === CALCOLO ROTTA ===
+  function toRad(d) { return d * Math.PI / 180; }
+  function toDeg(r) { return r * 180 / Math.PI; }
+
+  function calcBearing(lat1, lon1, lat2, lon2) {
+    var p1 = toRad(lat1), p2 = toRad(lat2);
+    var dl = toRad(lon2 - lon1);
+    var y = Math.sin(dl) * Math.cos(p2);
+    var x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
+    return (toDeg(Math.atan2(y, x)) + 360) % 360;
+  }
+
+  function calcDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371;
+    var p1 = toRad(lat1), p2 = toRad(lat2);
+    var dp = toRad(lat2 - lat1), dl = toRad(lon2 - lon1);
+    var a = Math.sin(dp/2)*Math.sin(dp/2) + Math.cos(p1)*Math.cos(p2)*Math.sin(dl/2)*Math.sin(dl/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  function bearingToText(b) {
+    var dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+    return dirs[Math.round(b / 22.5) % 16];
+  }
+
+  function calculate() {
+    var lat1 = parseFloat(document.getElementById('myLat').value);
+    var lon1 = parseFloat(document.getElementById('myLon').value);
+    var lat2 = parseFloat(document.getElementById('destLat').value);
+    var lon2 = parseFloat(document.getElementById('destLon').value);
+
+    if (isNaN(lat1) || isNaN(lon1)) { alert('Inserisci o acquisisci la tua posizione corrente.'); return; }
+    if (isNaN(lat2) || isNaN(lon2)) { alert('Inserisci le coordinate della destinazione.'); return; }
+
+    var bearing = calcBearing(lat1, lon1, lat2, lon2);
+    var dist    = calcDistance(lat1, lon1, lat2, lon2);
+    var dir     = bearingToText(bearing);
+
+    document.getElementById('bearingVal').textContent  = Math.round(bearing) + '\u00B0';
+    document.getElementById('bearingDir').textContent  = dir + '  \u00B7  ROTTA BUSSOLA';
+    document.getElementById('distVal').textContent     = dist >= 1 ? dist.toFixed(1) + ' km' : Math.round(dist * 1000) + ' m';
+    document.getElementById('directionVal').textContent = dir;
+    document.getElementById('fromVal').textContent     = lat1.toFixed(4) + ', ' + lon1.toFixed(4);
+    document.getElementById('toVal').textContent       = lat2.toFixed(4) + ', ' + lon2.toFixed(4);
+
+    document.getElementById('needleWrap').style.transform = 'rotate(' + bearing + 'deg)';
+
+    document.getElementById('resultBox').className = 'result-box visible';
+    updateSkyObjects(lat1, lon1, bearing);
+    document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function clearResult() {
+    document.getElementById('resultBox').className = 'result-box';
+  }
+
+
+  // ===================================================
+  // ASTRONOMIA: posizione Sole e Luna
+  // Algoritmo basato su Jean Meeus "Astronomical Algorithms"
+  // ===================================================
+
+  function toRad2(d) { return d * Math.PI / 180; }
+  function toDeg2(r) { return r * 180 / Math.PI; }
+  function norm360(a) { return ((a % 360) + 360) % 360; }
+
+  // Giorni Giuliani da data JS
+  function julianDay(date) {
+    return date.getTime() / 86400000.0 + 2440587.5;
+  }
+
+  // Calcola azimut e altitudine del Sole dalla posizione dell'osservatore
+  function calcSun(lat, lon, date) {
+    var JD  = julianDay(date);
+    var T   = (JD - 2451545.0) / 36525.0;
+
+    // Longitudine media del sole
+    var L0 = norm360(280.46646 + 36000.76983 * T);
+    // Anomalia media
+    var M  = norm360(357.52911 + 35999.05029 * T - 0.0001537 * T * T);
+    // Equazione del centro
+    var C  = (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(toRad2(M))
+           + (0.019993 - 0.000101 * T) * Math.sin(toRad2(2 * M))
+           + 0.000289 * Math.sin(toRad2(3 * M));
+    var sunLon = L0 + C;
+    var appLon = sunLon - 0.00569 - 0.00478 * Math.sin(toRad2(125.04 - 1934.136 * T));
+    // Obliquità eclittica
+    var e0 = 23.439291111 - 0.013004167 * T;
+    var e  = e0 + 0.00256 * Math.cos(toRad2(125.04 - 1934.136 * T));
+    // Ascensione retta e declinazione
+    var RA  = toDeg2(Math.atan2(Math.cos(toRad2(e)) * Math.sin(toRad2(appLon)), Math.cos(toRad2(appLon))));
+    var Dec = toDeg2(Math.asin(Math.sin(toRad2(e)) * Math.sin(toRad2(appLon))));
+    return altAz(lat, lon, date, RA, Dec);
+  }
+
+  // Calcola azimut e altitudine della Luna
+  function calcMoon(lat, lon, date) {
+    var JD = julianDay(date);
+    var T  = (JD - 2451545.0) / 36525.0;
+
+    // Longitudine media, anomalia media, argomento di latitudine
+    var Lp = norm360(218.3165 + 481267.8813 * T);
+    var M  = norm360(357.5291 + 35999.0503 * T);
+    var Mp = norm360(134.9634 + 477198.8676 * T);
+    var D  = norm360(297.8502 + 445267.1115 * T);
+    var F  = norm360(93.2720 + 483202.0175 * T);
+
+    // Perturbazioni principali in longitudine
+    var dL = 6288 * Math.sin(toRad2(Mp))
+           + 1274 * Math.sin(toRad2(2*D - Mp))
+           + 658  * Math.sin(toRad2(2*D))
+           + 214  * Math.sin(toRad2(2*Mp))
+           - 186  * Math.sin(toRad2(M))
+           - 114  * Math.sin(toRad2(2*F))
+           + 59   * Math.sin(toRad2(2*D - 2*Mp))
+           - 57   * Math.sin(toRad2(2*D - M - Mp))
+           + 46   * Math.sin(toRad2(2*D + Mp))
+           - 38   * Math.sin(toRad2(D));
+    var moonLon = Lp + dL / 1000.0;
+
+    // Perturbazioni in latitudine
+    var dB = 5128 * Math.sin(toRad2(F))
+           + 280  * Math.sin(toRad2(Mp + F))
+           + 277  * Math.sin(toRad2(Mp - F))
+           + 173  * Math.sin(toRad2(2*D - F))
+           + 55   * Math.sin(toRad2(2*D - Mp + F));
+    var moonLat = dB / 1000.0;
+
+    // Obliquità eclittica
+    var e0 = 23.439291111 - 0.013004167 * T;
+    var RA  = toDeg2(Math.atan2(
+      Math.sin(toRad2(moonLon)) * Math.cos(toRad2(e0)) - Math.tan(toRad2(moonLat)) * Math.sin(toRad2(e0)),
+      Math.cos(toRad2(moonLon))
+    ));
+    var Dec = toDeg2(Math.asin(
+      Math.sin(toRad2(moonLat)) * Math.cos(toRad2(e0)) +
+      Math.cos(toRad2(moonLat)) * Math.sin(toRad2(e0)) * Math.sin(toRad2(moonLon))
+    ));
+    return altAz(lat, lon, date, RA, Dec);
+  }
+
+  // Conversione RA/Dec -> Altitudine/Azimut topocentrici
+  function altAz(lat, lon, date, RA, Dec) {
+    var JD  = julianDay(date);
+    // Tempo siderale di Greenwich (gradi)
+    var T   = (JD - 2451545.0) / 36525.0;
+    var GST = norm360(280.46061837 + 360.98564736629 * (JD - 2451545.0) + 0.000387933 * T * T);
+    // Angolo orario locale
+    var HA  = norm360(GST + lon - RA);
+    var latR = toRad2(lat);
+    var DecR = toRad2(Dec);
+    var HAr  = toRad2(HA);
+    var alt  = toDeg2(Math.asin(
+      Math.sin(latR) * Math.sin(DecR) +
+      Math.cos(latR) * Math.cos(DecR) * Math.cos(HAr)
+    ));
+    var az = toDeg2(Math.atan2(
+      -Math.cos(DecR) * Math.sin(HAr),
+       Math.sin(DecR) * Math.cos(latR) - Math.cos(DecR) * Math.cos(HAr) * Math.sin(latR)
+    ));
+    az = norm360(az + 180);   // converti a 0=N, 90=E
+    return { az: az, alt: alt };
+  }
+
+  // Calcola la differenza angolare minima tra due azimut (-180..+180)
+  function angleDiff(a, b) {
+    var d = ((a - b) + 540) % 360 - 180;
+    return d;
+  }
+
+  function updateSkyObjects(lat, lon, routeBearing) {
+    var now  = new Date();
+    var sun  = calcSun(lat, lon, now);
+    var moon = calcMoon(lat, lon, now);
+    var dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+
+    // SOLE
+    var sunVisible = sun.alt > -0.833;  // correzione rifrazione standard
+    var sunItem = document.getElementById('sunItem');
+    sunItem.className = 'sky-item sun' + (sunVisible ? '' : ' hidden-obj');
+    document.getElementById('sunDeg').textContent   = Math.round(sun.az) + '°';
+    document.getElementById('sunDir').textContent   = dirs[Math.round(sun.az / 22.5) % 16];
+    document.getElementById('sunElev').textContent  = 'Elevazione: ' + sun.alt.toFixed(1) + '°';
+    document.getElementById('sunStatus').textContent = sunVisible ? 'VISIBILE' : 'SOTTO ORIZZONTE';
+
+    // LUNA
+    var moonVisible = moon.alt > 0;
+    var moonItem = document.getElementById('moonItem');
+    moonItem.className = 'sky-item moon' + (moonVisible ? '' : ' hidden-obj');
+    document.getElementById('moonDeg').textContent   = Math.round(moon.az) + '°';
+    document.getElementById('moonDir').textContent   = dirs[Math.round(moon.az / 22.5) % 16];
+    document.getElementById('moonElev').textContent  = 'Elevazione: ' + moon.alt.toFixed(1) + '°';
+    document.getElementById('moonStatus').textContent = moonVisible ? 'VISIBILE' : 'SOTTO ORIZZONTE';
+
+    // --- SCARTO ---
+    function setOffset(itemId, degId, arrowId, labelId, bodyAz, bodyVisible) {
+      var item   = document.getElementById(itemId);
+      var diff   = angleDiff(routeBearing, bodyAz);   // + = corpo a sinistra della rotta, devo girare a dx
+      var absDiff = Math.abs(Math.round(diff));
+      var arrow, label;
+
+      if (absDiff <= 2) {
+        arrow = '↑';   // freccia su = in linea
+        label = 'In linea con la rotta';
+      } else if (diff > 0) {
+        arrow = '← ' + absDiff + '°';   // sinistra
+        label = 'Gira a sinistra';
+      } else {
+        arrow = absDiff + '° →';   // destra
+        label = 'Gira a destra';
+      }
+
+      if (!bodyVisible) {
+        item.className = item.className.replace(' hidden-obj','') + ' hidden-obj';
+      } else {
+        item.className = item.className.replace(' hidden-obj','');
+      }
+
+      document.getElementById(degId).textContent   = absDiff + '°';
+      document.getElementById(arrowId).textContent = arrow;
+      document.getElementById(labelId).textContent = label;
+    }
+
+    setOffset('sunOffsetItem',  'sunOffsetDeg',  'sunOffsetArrow',  'sunOffsetLabel',  sun.az,  sunVisible);
+    setOffset('moonOffsetItem', 'moonOffsetDeg', 'moonOffsetArrow', 'moonOffsetLabel', moon.az, moonVisible);
+
+    document.getElementById('skyBox').style.display = 'block';
+  }
+
+  // Auto GPS al caricamento della pagina
+  window.addEventListener('load', function() {
+    setTimeout(getGPS, 500);
+  });
+</script>
+</body>
+</html>
