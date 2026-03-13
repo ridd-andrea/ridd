@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aforismi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Jost:wght@200;400;500&display=swap" rel="stylesheet">
 
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0d0d0f;
+  --surface:  #141418;
+  --border:   rgba(255,255,255,.07);
+  --text:     #e8e4dc;
+  --muted:    rgba(232,228,220,.4);
+  --accent:   #c9a96e;
+  --accent2:  #7c6e58;
+  --glow:     rgba(201,169,110,.15);
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* ── Grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: .6;
+}
+
+/* ── Header ── */
+header {
+  padding: 3rem 4rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 4rem;
+  width: 60px; height: 2px;
+  background: var(--accent);
+}
+.logo {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.logo em { font-style: italic; color: var(--accent); }
+.tagline {
+  font-size: .7rem;
+  font-weight: 200;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Counter badge ── */
+.counter {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.counter span {
+  font-family: var(--sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 0;
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 4rem;
+}
+
+/* ── Stage ── */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding-right: 3rem;
+  border-right: 1px solid var(--border);
+}
+
+/* ── Button ── */
+.btn {
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 1rem 2.4rem;
+  cursor: pointer;
+  position: relative;
+  transition: all .3s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--glow);
+  opacity: 0;
+  transition: opacity .3s;
+  clip-path: inherit;
+}
+.btn:hover { background: #d4b47a; }
+.btn:hover::after { opacity: 1; }
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ── Loader dots ── */
+.loader {
+  display: none;
+  gap: .4rem;
+  align-items: center;
+  height: 28px;
+}
+.loader span {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.loader span:nth-child(2) { animation-delay: .2s; }
+.loader span:nth-child(3) { animation-delay: .4s; }
+@keyframes pulse {
+  0%, 80%, 100% { transform: scale(.6); opacity: .3; }
+  40%            { transform: scale(1);  opacity: 1; }
+}
+
+/* ── Quote card ── */
+.quote-wrap {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote-card {
+  position: relative;
+  padding: 2.5rem 2.5rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.quote-card.show { opacity: 1; transform: translateY(0); }
+.quote-card.dup  { border-color: rgba(201,169,110,.2); }
+
+/* Decorative corner */
+.quote-card::before, .quote-card::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--accent);
+  border-style: solid;
+}
+.quote-card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.quote-card::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.quote-mark {
+  font-family: var(--serif);
+  font-size: 7rem;
+  line-height: .5;
+  color: var(--accent);
+  opacity: .12;
+  position: absolute;
+  top: 1.5rem; left: 1.8rem;
+  font-style: italic;
+  pointer-events: none;
+  user-select: none;
+}
+
+.quote-text {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+
+.quote-author {
+  margin-top: 1.4rem;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.quote-author::before { content: '— '; }
+
+.quote-fonte {
+  margin-top: .4rem;
+  font-size: .68rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+/* Status messages */
+.status-msg {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--muted);
+  padding: 1.5rem 0;
+}
+.status-msg.dup { color: var(--accent2); }
+
+/* ── Sidebar ── */
+.sidebar {
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 65vh;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent2) transparent;
+}
+
+.history-item {
+  padding: .9rem 1rem;
+  background: var(--surface);
+  border-left: 2px solid var(--accent2);
+  opacity: 0;
+  transform: translateX(10px);
+  animation: slideIn .4s ease forwards;
+  cursor: default;
+  transition: border-color .2s;
+}
+.history-item:hover { border-left-color: var(--accent); }
+@keyframes slideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.history-item .h-text {
+  font-family: var(--serif);
+  font-size: .88rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.history-item .h-author {
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: .4rem;
+}
+
+.empty-hint {
+  font-size: .8rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+footer {
+  padding: 1.5rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .68rem;
+  font-weight: 200;
+  letter-spacing: .12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+footer a { color: var(--accent2); text-decoration: none; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  header { padding: 2rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: .8rem; }
+  header::after { left: 1.5rem; }
+  main { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+  .stage { padding-right: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+  .sidebar { padding-left: 0; padding-top: 2rem; }
+  .history-list { max-height: 40vh; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <p class="tagline">Saggezza dal mondo</p>
+    <h1 class="logo">A<em>forismi</em></h1>
+  </div>
+  <div style="text-align:right">
+    <div class="counter">Scoperti oggi: <span id="countNum">0</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- Stage -->
+  <section class="stage">
+
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <button class="btn" id="btnAforisma">✦ &nbsp;Nuovo Aforisma</button>
+      <div class="loader" id="loader">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="quote-wrap" id="quoteWrap">
+      <p class="status-msg">Premi il pulsante per scoprire un aforisma.</p>
+    </div>
+
+  </section>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <p class="sidebar-title">✦ Scoperti in questa sessione</p>
+    <ul class="history-list" id="historyList">
+      <li><p class="empty-hint">Nessun aforisma ancora.<br>Premi il pulsante per iniziare.</p></li>
+    </ul>
+  </aside>
+</main>
+
+<footer>
+  <span>Aforismi &mdash; solo visualizzazione</span>
+  <span>Fonte: libreria locale &amp; api.quotable.io</span>
+</footer>
+
+<script>
+// ── Libreria locale di 50 aforismi ─────────────────────────
+const LIBRERIA = [
+  {t:'La vita è ciò che ti accade mentre sei occupato a fare altri progetti.', a:'John Lennon'},
+  {t:'Il successo è la capacità di andare da un fallimento all\'altro senza perdere l\'entusiasmo.', a:'Winston Churchill'},
+  {t:'Sii il cambiamento che vuoi vedere nel mondo.', a:'Mahatma Gandhi'},
+  {t:'L\'unico modo per fare un ottimo lavoro è amare ciò che fai.', a:'Steve Jobs'},
+  {t:'In mezzo alle difficoltà si nascondono le opportunità.', a:'Albert Einstein'},
+  {t:'La fantasia è più importante della conoscenza.', a:'Albert Einstein'},
+  {t:'Il viaggio di mille miglia comincia con un singolo passo.', a:'Lao Tzu'},
+  {t:'Conosci te stesso.', a:'Socrate'},
+  {t:'Dubita di tutto. Trova la tua luce.', a:'Buddha'},
+  {t:'Non contare i giorni, fai sì che i giorni contino.', a:'Muhammad Ali'},
+  {t:'La semplicità è la massima sofisticazione.', a:'Leonardo da Vinci'},
+  {t:'Il tempo è denaro.', a:'Benjamin Franklin'},
+  {t:'L\'educazione è l\'arma più potente che puoi usare per cambiare il mondo.', a:'Nelson Mandela'},
+  {t:'Non importa quanto sei lento, purché tu non ti fermi.', a:'Confucio'},
+  {t:'La speranza è il sogno dell\'uomo sveglio.', a:'Aristotele'},
+  {t:'Meglio accendere una candela che maledire il buio.', a:'Proverbio cinese'},
+  {t:'Il coraggio non è assenza di paura, ma il giudizio che qualcos\'altro è più importante della paura.', a:'Ambrose Redmoon'},
+  {t:'La vera ignoranza non è la mancanza di conoscenza, ma il rifiuto di acquisirla.', a:'Karl Popper'},
+  {t:'Non rimandare a domani quello che puoi fare oggi.', a:'Benjamin Franklin'},
+  {t:'La libertà non è fare quello che si vuole, ma volere quello che si fa.', a:'Jean-Paul Sartre'},
+  {t:'Un amico è un altro me stesso.', a:'Aristotele'},
+  {t:'Il dolore è inevitabile, la sofferenza è facoltativa.', a:'Haruki Murakami'},
+  {t:'La creatività è l\'intelligenza che si diverte.', a:'Albert Einstein'},
+  {t:'Chi legge vive mille vite prima di morire. Chi non legge ne vive solo una.', a:'George R.R. Martin'},
+  {t:'Il silenzio è la risposta migliore agli stolti.', a:'Proverbio arabo'},
+  {t:'La vita è breve, l\'arte è lunga.', a:'Ippocrate'},
+  {t:'Vivi come se dovessi morire domani. Impara come se dovessi vivere per sempre.', a:'Mahatma Gandhi'},
+  {t:'Il modo migliore per predire il futuro è crearlo.', a:'Peter Drucker'},
+  {t:'Non è mai troppo tardi per diventare ciò che avresti potuto essere.', a:'George Eliot'},
+  {t:'Le grandi menti discutono di idee, le menti mediocri di eventi, le menti piccole di persone.', a:'Eleanor Roosevelt'},
+  {t:'La forza non deriva dalla capacità fisica, ma da una volontà indomita.', a:'Mahatma Gandhi'},
+  {t:'Tutto ciò che siamo è il risultato di ciò che abbiamo pensato.', a:'Buddha'},
+  {t:'Le difficoltà rafforzano la mente come il lavoro il corpo.', a:'Seneca'},
+  {t:'Errare è umano, perseverare è diabolico.', a:'Cicerone'},
+  {t:'Nessun vento è favorevole per il marinaio che non sa dove andare.', a:'Seneca'},
+  {t:'La vera ricchezza non consiste nel possedere molto, ma nel desiderare poco.', a:'Epitteto'},
+  {t:'Il genio è per l\'uno per cento ispirazione e per il novantanove per cento sudore.', a:'Thomas Edison'},
+  {t:'Non puoi tornare indietro e cambiare l\'inizio, ma puoi ricominciare e cambiare il finale.', a:'C.S. Lewis'},
+  {t:'La mente è come un paracadute: funziona solo se si apre.', a:'Frank Zappa'},
+  {t:'Chi non ha mai commesso un errore non ha mai provato nulla di nuovo.', a:'Albert Einstein'},
+  {t:'Ama il prossimo tuo come te stesso.', a:'Gesù di Nazareth'},
+  {t:'Impara dall\'ieri, vivi per l\'oggi, spera per il domani.', a:'Albert Einstein'},
+  {t:'L\'uomo è la misura di tutte le cose.', a:'Protagora'},
+  {t:'Chi si ferma è perduto.', a:'Proverbio italiano'},
+  {t:'La vera pazienza non è aspettare, ma avere un buon atteggiamento mentre si aspetta.', a:'Joyce Meyer'},
+  {t:'Non basta sapere, si deve anche applicare. Non è sufficiente volere, si deve anche agire.', a:'Johann Wolfgang von Goethe'},
+  {t:'Il segreto per andare avanti è cominciare.', a:'Mark Twain'},
+  {t:'Cadere è umano, rialzarsi è divino.', a:'Proverbio'},
+  {t:'La vita non si misura col numero di respiri che facciamo, ma con i momenti che ci tolgono il respiro.', a:'Maya Angelou'},
+  {t:'Dum spiro, spero — Finché respiro, spero.', a:'Cicerone'},
+];
+
+// ── Stato sessione (solo memoria, niente DB) ─────────────────
+const shown   = new Set();   // testi già mostrati in questa sessione
+let   count   = 0;
+
+const btn       = document.getElementById('btnAforisma');
+const loader    = document.getElementById('loader');
+const quoteWrap = document.getElementById('quoteWrap');
+const histList  = document.getElementById('historyList');
+const countNum  = document.getElementById('countNum');
+
+// ── Helpers ──────────────────────────────────────────────────
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function renderQuote(testo, autore, fonte) {
+  quoteWrap.innerHTML = `
+    <div class="quote-card" id="qcard">
+      <span class="quote-mark">&ldquo;</span>
+      <p class="quote-text">${esc(testo)}</p>
+      <p class="quote-author">${esc(autore)}</p>
+      <p class="quote-fonte">${esc(fonte)}</p>
+    </div>`;
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() =>
+      document.getElementById('qcard')?.classList.add('show')
+    )
+  );
+}
+
+function renderStatus(msg, isDup = false) {
+  quoteWrap.innerHTML = `<p class="status-msg${isDup?' dup':''}">${esc(msg)}</p>`;
+}
+
+function addToHistory(testo, autore) {
+  // Rimuovi hint vuoto
+  histList.querySelector('.empty-hint')?.parentElement?.remove();
+
+  const li = document.createElement('li');
+  li.className = 'history-item';
+  li.style.animationDelay = '0s';
+  li.innerHTML = `
+    <p class="h-text">${esc(testo)}</p>
+    <p class="h-author">${esc(autore)}</p>`;
+  histList.prepend(li);
+}
+
+// ── Logica principale ─────────────────────────────────────────
+async function getAforisma() {
+  btn.disabled = true;
+  loader.style.display = 'flex';
+  quoteWrap.innerHTML = '';
+
+  let testo = null, autore = null, fonte = '';
+
+  // 1. Tenta API esterna con fetch
+  try {
+    const res  = await Promise.race([
+      fetch('https://api.quotable.io/random?maxLength=220'),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 5000))
+    ]);
+    if (res.ok) {
+      const d = await res.json();
+      if (d.content && !shown.has(d.content)) {
+        testo  = d.content;
+        autore = d.author || 'Anonimo';
+        fonte  = 'Fonte: api.quotable.io';
+      }
+    }
+  } catch (_) { /* API non raggiungibile, useremo libreria locale */ }
+
+  // 2. Fallback: pesca dalla libreria locale (escludi già mostrati)
+  if (!testo) {
+    const disponibili = shuffle(LIBRERIA).filter(q => !shown.has(q.t));
+    if (disponibili.length === 0) {
+      loader.style.display = 'none';
+      btn.disabled = false;
+      renderStatus('Hai letto tutti gli aforismi disponibili in questa sessione! Ricarica la pagina per ricominciare.', true);
+      return;
+    }
+    testo  = disponibili[0].t;
+    autore = disponibili[0].a;
+    fonte  = 'Fonte: libreria locale';
+  }
+
+  // 3. Registra e mostra
+  shown.add(testo);
+  count++;
+  countNum.textContent = count;
+
+  loader.style.display = 'none';
+  btn.disabled = false;
+
+  renderQuote(testo, autore, fonte);
+  addToHistory(testo, autore);
+}
+
+btn.addEventListener('click', getAforisma);
+</script>
+</body>
+</html>
