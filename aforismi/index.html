@@ -216,12 +216,26 @@ function setPill(label, live = true) {
 //  FETCH → api.php che usa file_get_contents() sul server
 // ════════════════════════════════════════════════════════════
 async function fetchAforisma() {
-  const res = await Promise.race([
-    fetch(API_URL + '?_=' + Date.now()),          // cache-bust
-    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 10000))
-  ]);
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  return res.json();
+  let res;
+  try {
+    res = await Promise.race([
+      fetch(API_URL + '?_=' + Date.now(), {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      }),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout dopo 10s')), 10000))
+    ]);
+  } catch (netErr) {
+    // Errore di rete reale (CORS, DNS, offline, timeout)
+    throw new Error('RETE: ' + netErr.message);
+  }
+  if (!res.ok) throw new Error('HTTP ' + res.status + ' da ' + API_URL);
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error('JSON non valido: ' + text.substring(0, 120));
+  }
 }
 
 // ════════════════════════════════════════════════════════════
@@ -301,8 +315,9 @@ async function mostraSingolo() {
     }
   } catch (e) {
     loader.style.display = 'none';
-    renderStatus('⚠ Impossibile raggiungere api.php — verifica che il file sia nella stessa cartella.');
-    setPill('offline', false);
+    renderStatus('⚠ Errore: ' + e.message + '<br><small style="opacity:.6;font-size:.75em">' + API_URL + '</small>');
+    setPill('errore', false);
+    console.error('fetchAforisma error:', e);
   }
 
   btnSingolo.disabled = false;
