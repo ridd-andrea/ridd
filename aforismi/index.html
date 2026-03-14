@@ -12,7 +12,6 @@
   --bg:#0d0d0f;--surface:#141418;--border:rgba(255,255,255,.07);
   --text:#e8e4dc;--muted:rgba(232,228,220,.38);
   --accent:#c9a96e;--accent2:#7c6e58;--green:#4a9b6f;
-  --glow:rgba(201,169,110,.15);
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Jost',sans-serif;
 }
@@ -28,8 +27,6 @@ header::after{content:'';position:absolute;bottom:-1px;left:4rem;width:60px;heig
 .tagline{font-size:.68rem;font-weight:200;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
 .counter{font-family:var(--serif);font-size:.95rem;color:var(--muted);font-style:italic;text-align:right}
 .counter span{font-family:var(--sans);font-size:1.4rem;font-weight:500;color:var(--accent);font-style:normal}
-
-/* Source pill */
 .source-pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:.2rem .7rem;border-radius:99px;margin-top:.5rem;transition:color .3s,border-color .3s}
 .source-pill.live{color:var(--green);border-color:var(--green)}
 .source-pill .dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:blink 1.4s ease-in-out infinite}
@@ -103,7 +100,6 @@ footer{padding:1.4rem 4rem;border-top:1px solid var(--border);display:flex;justi
 footer a{color:var(--accent2);text-decoration:none}
 footer a:hover{color:var(--accent)}
 
-/* Responsive */
 @media(max-width:768px){
   header{padding:2rem 1.5rem 1.5rem;flex-direction:column;align-items:flex-start;gap:.7rem}
   header::after{left:1.5rem}
@@ -141,14 +137,12 @@ footer a:hover{color:var(--accent)}
         <span></span><span></span><span></span>
       </div>
     </div>
-
     <div class="voce-bar" id="voceBar">
       <div class="onde"><span></span><span></span><span></span><span></span><span></span></div>
       In lettura vocale&hellip;
     </div>
-
     <div class="quote-wrap" id="quoteWrap">
-      <p class="status-msg">Premi un pulsante per scoprire un aforisma dal web.</p>
+      <p class="status-msg">Premi un pulsante per scoprire un aforisma.</p>
     </div>
   </section>
 
@@ -161,21 +155,15 @@ footer a:hover{color:var(--accent)}
 </main>
 
 <footer>
-  <span>Aforismi &mdash; solo visualizzazione</span>
+  <span>Aforismi &mdash; GitHub Pages</span>
   <span>
-    Sorgenti:
     <a href="https://quotable.io" target="_blank">quotable.io</a> &middot;
     <a href="https://zenquotes.io" target="_blank">zenquotes.io</a> &middot;
-    <a href="https://github.com/JamesFT/Database-Quotes-JSON" target="_blank">JamesFT/DB-Quotes</a>
+    dataset locale
   </span>
 </footer>
 
 <script>
-// ════════════════════════════════════════════════════════════
-//  CONFIG — punta a api.php nella stessa repo/cartella
-// ════════════════════════════════════════════════════════════
-const API_URL = 'https://sogno.altervista.org/aforismi/api.php';
-
 // ════════════════════════════════════════════════════════════
 //  STATO
 // ════════════════════════════════════════════════════════════
@@ -183,6 +171,7 @@ const shown  = new Set();
 let count    = 0;
 let loopOn   = false;
 let loopStop = false;
+let localDB  = [];          // aforismi.json caricato una volta sola
 const synth  = window.speechSynthesis;
 
 // ════════════════════════════════════════════════════════════
@@ -201,41 +190,105 @@ const sourceLabel = document.getElementById('sourceLabel');
 // ════════════════════════════════════════════════════════════
 //  HELPERS
 // ════════════════════════════════════════════════════════════
-const esc = s => String(s ?? '')
-  .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-
+const esc   = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const rand  = arr => arr[Math.floor(Math.random() * arr.length)];
 
 function setPill(label, live = true) {
   sourceLabel.textContent = label;
   sourcePill.className = 'source-pill' + (live ? ' live' : '');
 }
 
+function withTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))
+  ]);
+}
+
 // ════════════════════════════════════════════════════════════
-//  FETCH → api.php che usa file_get_contents() sul server
+//  CARICA aforismi.json (una volta sola, poi cache locale)
+// ════════════════════════════════════════════════════════════
+async function loadLocalDB() {
+  if (localDB.length > 0) return localDB;
+  try {
+    const res = await withTimeout(fetch('./aforismi.json'), 6000);
+    if (res.ok) {
+      localDB = await res.json();
+    }
+  } catch (_) {}
+  return localDB;
+}
+
+// ════════════════════════════════════════════════════════════
+//  SORGENTI  — chiamate dirette dal browser, CORS supportato
+// ════════════════════════════════════════════════════════════
+
+// 1. quotable.io — ~2500 citazioni, CORS aperto
+async function fromQuotable() {
+  const res = await withTimeout(
+    fetch('https://api.quotable.io/quotes/random?limit=1'),
+    7000
+  );
+  if (!res.ok) throw new Error('quotable HTTP ' + res.status);
+  const d = await res.json();
+  if (!d[0]?.content) throw new Error('quotable: dati vuoti');
+  return { testo: d[0].content, autore: d[0].author || 'Anonimo', fonte: 'quotable.io' };
+}
+
+// 2. zenquotes.io — ~10.000 citazioni, CORS aperto
+async function fromZenquotes() {
+  const res = await withTimeout(
+    fetch('https://zenquotes.io/api/random'),
+    7000
+  );
+  if (!res.ok) throw new Error('zenquotes HTTP ' + res.status);
+  const d = await res.json();
+  if (!d[0]?.q || d[0].q.includes('Too many')) throw new Error('zenquotes: limite');
+  return { testo: d[0].q, autore: d[0].a || 'Anonimo', fonte: 'zenquotes.io' };
+}
+
+// 3. quoteslate.ir — migliaia di citazioni, CORS aperto
+async function fromQuoteslate() {
+  const res = await withTimeout(
+    fetch('https://quoteslate.ir/api/quotes/random'),
+    7000
+  );
+  if (!res.ok) throw new Error('quoteslate HTTP ' + res.status);
+  const d = await res.json();
+  if (!d.quote) throw new Error('quoteslate: dati vuoti');
+  return { testo: d.quote, autore: d.author || 'Anonimo', fonte: 'quoteslate.ir' };
+}
+
+// 4. aforismi.json locale su GitHub (fallback garantito)
+async function fromLocal() {
+  const db = await loadLocalDB();
+  if (!db.length) throw new Error('DB locale vuoto');
+  // Scegli uno non ancora mostrato; se tutti mostrati, resetta
+  const disponibili = db.filter(q => !shown.has(q.testo));
+  const pool = disponibili.length > 0 ? disponibili : db;
+  const q = rand(pool);
+  return { testo: q.testo, autore: q.autore || 'Anonimo', fonte: 'dataset locale' };
+}
+
+// ════════════════════════════════════════════════════════════
+//  FETCH PRINCIPALE  — ruota tra sorgenti, fallback locale
 // ════════════════════════════════════════════════════════════
 async function fetchAforisma() {
-  let res;
-  try {
-    res = await Promise.race([
-      fetch(API_URL + '?_=' + Date.now(), {
-        method: 'GET',
-        headers: { 'Accept': 'application/json' }
-      }),
-      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout dopo 10s')), 10000))
-    ]);
-  } catch (netErr) {
-    // Errore di rete reale (CORS, DNS, offline, timeout)
-    throw new Error('RETE: ' + netErr.message);
+  // Ordine casuale tra le API esterne
+  const apiEsterne = [fromQuotable, fromZenquotes, fromQuoteslate];
+  apiEsterne.sort(() => Math.random() - 0.5);
+
+  for (const fn of apiEsterne) {
+    try {
+      return await fn();
+    } catch (_) {
+      // questa API non ha funzionato, prova la prossima
+    }
   }
-  if (!res.ok) throw new Error('HTTP ' + res.status + ' da ' + API_URL);
-  const text = await res.text();
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error('JSON non valido: ' + text.substring(0, 120));
-  }
+
+  // Tutte le API esterne fallite → dataset locale su GitHub
+  return await fromLocal();
 }
 
 // ════════════════════════════════════════════════════════════
@@ -257,7 +310,7 @@ function renderCard(testo, autore, fonte, speaking = false) {
 }
 
 function renderStatus(msg) {
-  quoteWrap.innerHTML = `<p class="status-msg">${esc(msg)}</p>`;
+  quoteWrap.innerHTML = `<p class="status-msg">${msg}</p>`;
 }
 
 function addHistory(testo, autore) {
@@ -269,7 +322,7 @@ function addHistory(testo, autore) {
 }
 
 // ════════════════════════════════════════════════════════════
-//  SINTESI VOCALE (Web Speech API)
+//  SINTESI VOCALE
 // ════════════════════════════════════════════════════════════
 function leggi(testo, autore) {
   return new Promise(resolve => {
@@ -278,11 +331,9 @@ function leggi(testo, autore) {
     utt.lang  = 'it-IT';
     utt.rate  = 0.88;
     utt.pitch = 1.02;
-    const voci  = synth.getVoices();
-    const vocIT = voci.find(v => v.lang.startsWith('it'));
+    const vocIT = synth.getVoices().find(v => v.lang.startsWith('it'));
     if (vocIT) utt.voice = vocIT;
-    utt.onend   = () => resolve();
-    utt.onerror = () => resolve();
+    utt.onend = utt.onerror = () => resolve();
     synth.speak(utt);
   });
 }
@@ -292,36 +343,26 @@ function leggi(testo, autore) {
 // ════════════════════════════════════════════════════════════
 async function mostraSingolo() {
   if (loopOn) fermaLoop();
-  btnSingolo.disabled = true;
-  btnLoop.disabled    = true;
+  btnSingolo.disabled = btnLoop.disabled = true;
   loader.style.display = 'flex';
   quoteWrap.innerHTML  = '';
 
   try {
-    const dati = await fetchAforisma();
+    const { testo, autore, fonte } = await fetchAforisma();
+    shown.add(testo);
+    count++;
+    countNum.textContent = count;
     loader.style.display = 'none';
-
-    if (!dati.ok) {
-      renderStatus('⚠ ' + (dati.msg || 'Errore sconosciuto'));
-      setPill('errore', false);
-    } else {
-      const { testo, autore, fonte } = dati;
-      shown.add(testo);
-      count++;
-      countNum.textContent = count;
-      renderCard(testo, autore, fonte);
-      addHistory(testo, autore);
-      setPill(fonte);
-    }
+    renderCard(testo, autore, fonte);
+    addHistory(testo, autore);
+    setPill(fonte);
   } catch (e) {
     loader.style.display = 'none';
-    renderStatus('⚠ Errore: ' + e.message + '<br><small style="opacity:.6;font-size:.75em">' + API_URL + '</small>');
+    renderStatus('⚠ Nessuna sorgente disponibile al momento.');
     setPill('errore', false);
-    console.error('fetchAforisma error:', e);
   }
 
-  btnSingolo.disabled = false;
-  btnLoop.disabled    = false;
+  btnSingolo.disabled = btnLoop.disabled = false;
 }
 
 // ════════════════════════════════════════════════════════════
@@ -332,9 +373,8 @@ function avviaLoop() {
     alert('Sintesi vocale non supportata. Usa Chrome o Edge.');
     return;
   }
-  loopOn   = true;
-  loopStop = false;
-  btnLoop.textContent = '⏹  Ferma';
+  loopOn = true; loopStop = false;
+  btnLoop.innerHTML = '&#9209;&nbsp; Ferma';
   btnLoop.classList.add('stop');
   btnSingolo.disabled = true;
   voceBar.classList.add('show');
@@ -342,8 +382,7 @@ function avviaLoop() {
 }
 
 function fermaLoop() {
-  loopStop = true;
-  loopOn   = false;
+  loopStop = true; loopOn = false;
   synth.cancel();
   btnLoop.innerHTML = '&#9654;&nbsp; Lettura Continua';
   btnLoop.classList.remove('stop');
@@ -357,27 +396,20 @@ async function eseguiLoop() {
     loader.style.display = 'flex';
     quoteWrap.innerHTML  = '';
 
-    let dati;
+    let risultato;
     try {
-      dati = await fetchAforisma();
+      risultato = await fetchAforisma();
     } catch (e) {
       loader.style.display = 'none';
-      renderStatus('⚠ Errore di rete. Loop interrotto.');
+      renderStatus('⚠ Nessuna sorgente disponibile. Loop interrotto.');
       fermaLoop(); break;
     }
 
     loader.style.display = 'none';
     if (loopStop) break;
 
-    if (!dati.ok) {
-      renderStatus('⏳ API non disponibile, riprovo tra 3s…');
-      await sleep(3000); continue;
-    }
-
-    const { testo, autore, fonte } = dati;
-
-    // Se la stessa frase è già apparsa, salta senza pausa
-    if (shown.has(testo)) { await sleep(400); continue; }
+    const { testo, autore, fonte } = risultato;
+    if (shown.has(testo)) { await sleep(300); continue; }
 
     shown.add(testo);
     count++;
@@ -399,11 +431,12 @@ btnSingolo.addEventListener('click', mostraSingolo);
 btnLoop.addEventListener('click', () => loopOn ? fermaLoop() : avviaLoop());
 window.addEventListener('beforeunload', () => { synth.cancel(); loopStop = true; });
 
-// Pre-carica voci TTS
+// Pre-carica voci TTS e dataset locale
 if (window.speechSynthesis) {
   speechSynthesis.getVoices();
   speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
 }
+loadLocalDB(); // carica aforismi.json in background subito all'avvio
 </script>
 </body>
 </html>
