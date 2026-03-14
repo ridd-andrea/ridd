@@ -1,0 +1,970 @@
+[
+  {
+    "testo": "La vita è un'eco: quello che mandi torna indietro.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Non è ricco chi ha tanto, ma chi ha abbastanza.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il tempo che non si usa è tempo che si perde.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi ha la salute è ricco senza saperlo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "La parola è d'argento, il silenzio è d'oro.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Ogni giorno ha il suo pensiero, ogni ora il suo affanno.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'uomo propone e Dio dispone.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi ben comincia è a metà dell'opera.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il mattino ha l'oro in bocca.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Tra il dire e il fare c'è di mezzo il mare.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non si vive di solo pane.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Meglio soli che male accompagnati.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il tempo è un gentiluomo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi dà subito dà due volte.",
+    "autore": "Proverbio latino"
+  },
+  {
+    "testo": "Quando il gioco si fa duro, i duri cominciano a giocare.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Non svegliare il can che dorme.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Una rondine non fa primavera.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Ride bene chi ride ultimo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'ozio è il padre dei vizi.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Tutto è bene quel che finisce bene.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi trova un amico trova un tesoro.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non c'è fumo senza arrosto.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il lupo perde il pelo ma non il vizio.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Patti chiari, amicizia lunga.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "In bocca al lupo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi la fa l'aspetti.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il mondo è bello perché è vario.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Ogni medaglia ha il suo rovescio.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non tutte le ciambelle riescono col buco.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il tempo è tiranno.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "La necessità aguzza l'ingegno.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi s'accontenta gode.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il saggio cambia idea, lo stolto mai.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Ogni cosa a suo tempo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'abitudine è una seconda natura.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi non osa non ottiene.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La fortuna aiuta i temerari.",
+    "autore": "Proverbio latino"
+  },
+  {
+    "testo": "In ogni difficoltà c'è un'opportunità nascosta.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La vera saggezza sta nel saper aspettare.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi troppo si affretta, tardi arriva.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il rispetto non si mendica, si guadagna.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La calma è la virtù dei forti.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi non fa, non sbaglia. Chi sbaglia, impara.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Ogni sacrificio lascia un segno di forza.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La gratitudine apre la porta a tutto il bene.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Un cuore generoso è sempre giovane.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La vera nobiltà è quella dello spirito.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi ama la verità non teme il confronto.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La semplicità è la veste della grandezza.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi aspira in alto deve partire dal basso.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "E quindi uscimmo a riveder le stelle.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Il sommo bene è la giustizia.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Onorate l'altissimo poeta.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Nessun maggior dolore che ricordarsi del tempo felice nella miseria.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "L'amor che move il sole e l'altre stelle.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Siete fatti non per vivere come bruti.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Donne ch'avete intelletto d'amore.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "La bocca mi baciò tutto tremante.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Io non mori' e non rimasi vivo.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Vuolsi così colà dove si puote ciò che si vuole.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "La natura è l'arte di Dio.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "State contenti, umana gente, al quia.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Solo e pensoso i più deserti campi vo misurando a passi tardi e lenti.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "La vita fugge e non s'arresta un'ora.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "Pace non trovo e non ho da far guerra.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "Benedetto sia il giorno, il mese e l'anno.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "L'amore è un signore tiranno.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "Erano i capei d'oro a l'aura sparsi.",
+    "autore": "Francesco Petrarca"
+  },
+  {
+    "testo": "È meglio essere temuto che amato, se non si può essere entrambe le cose.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Il fine giustifica i mezzi.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Chi non si difende da solo, non è sicuro.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "La fortuna è donna, e chi la vuole tenere bisogna batterla.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Gli uomini si governano più con l'occhio che con le mani.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Non si può tenere l'amicizia di coloro dai quali si teme.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Dove la forza è scarsa, l'astuzia è necessaria.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "La scienza è scritta in questo grandissimo libro dell'universo.",
+    "autore": "Galileo Galilei"
+  },
+  {
+    "testo": "Non si può insegnare nulla a un uomo; si può solo aiutarlo a scoprire ciò che ha già dentro di sé.",
+    "autore": "Galileo Galilei"
+  },
+  {
+    "testo": "Dubita, ma indaga.",
+    "autore": "Galileo Galilei"
+  },
+  {
+    "testo": "Ostacoli non mi possono piegare. Ogni ostacolo cede davanti alla fermezza.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Il pittore che ritrae per pratica e giudizio d'occhio senza ragione è come lo specchio.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Chi non può quello che vuole, voglia quello che può.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "L'esperienza non falla mai; sono i nostri giudizi che fallano.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Impara a vedere. Tutto è connesso a tutto il resto.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Il ferro si arrugginisce se non viene usato.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Dove lo spirito non lavora con la mano, non c'è arte.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Ogni tanto vai via soli. Siediti in silenzio. Chiediti cos'è essenziale.",
+    "autore": "Leonardo da Vinci"
+  },
+  {
+    "testo": "Ai posteri l'ardua sentenza.",
+    "autore": "Alessandro Manzoni"
+  },
+  {
+    "testo": "Il coraggio, uno non se lo può dare.",
+    "autore": "Alessandro Manzoni"
+  },
+  {
+    "testo": "Quel ramo del lago di Como che volge a mezzogiorno.",
+    "autore": "Alessandro Manzoni"
+  },
+  {
+    "testo": "La storia non è maestra di vita per chi non sa leggerla.",
+    "autore": "Alessandro Manzoni"
+  },
+  {
+    "testo": "Il perdono è la vendetta del giusto.",
+    "autore": "Alessandro Manzoni"
+  },
+  {
+    "testo": "Infinita vanità del tutto.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "Quel vago, indefinito senso che ci segue sempre.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "La noia è il più sublime dei sentimenti umani.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "Fratelli, a un tempo stesso, Amore e Morte ingenerò il fato.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "Il vero eroico è di fare il proprio dovere senza speranza di ricompensa.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "Natura, ogni pensiero vola via dinanzi alla tua possanza.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "È bello il mondo, e il cor non è contento.",
+    "autore": "Giacomo Leopardi"
+  },
+  {
+    "testo": "Salute, o Satana, o ribellione.",
+    "autore": "Giosuè Carducci"
+  },
+  {
+    "testo": "Piango e rido: rido e piango.",
+    "autore": "Giosuè Carducci"
+  },
+  {
+    "testo": "Bisogna fare della propria vita come si fa un'opera d'arte.",
+    "autore": "Gabriele D'Annunzio"
+  },
+  {
+    "testo": "Io ho quel che ho donato.",
+    "autore": "Gabriele D'Annunzio"
+  },
+  {
+    "testo": "La vita è bella e degna di essere vissuta.",
+    "autore": "Gabriele D'Annunzio"
+  },
+  {
+    "testo": "Memento audere semper — Ricorda di osare sempre.",
+    "autore": "Gabriele D'Annunzio"
+  },
+  {
+    "testo": "Odio gli indifferenti.",
+    "autore": "Antonio Gramsci"
+  },
+  {
+    "testo": "Istruitevi, perché avremo bisogno di tutta la nostra intelligenza.",
+    "autore": "Antonio Gramsci"
+  },
+  {
+    "testo": "La crisi consiste appunto nel fatto che il vecchio muore e il nuovo non può nascere.",
+    "autore": "Antonio Gramsci"
+  },
+  {
+    "testo": "Pessimismo dell'intelligenza, ottimismo della volontà.",
+    "autore": "Antonio Gramsci"
+  },
+  {
+    "testo": "Uno, nessuno e centomila.",
+    "autore": "Luigi Pirandello"
+  },
+  {
+    "testo": "La vita o si vive o si scrive.",
+    "autore": "Luigi Pirandello"
+  },
+  {
+    "testo": "Tutto quello che si guadagna con la saggezza si perde con la vecchiaia.",
+    "autore": "Luigi Pirandello"
+  },
+  {
+    "testo": "Il dramma di chi non sa chi è.",
+    "autore": "Luigi Pirandello"
+  },
+  {
+    "testo": "Ogni uomo porta dentro di sé un pazzo che non si conosce.",
+    "autore": "Luigi Pirandello"
+  },
+  {
+    "testo": "Non chiederci la parola che squadri da ogni lato l'animo nostro informe.",
+    "autore": "Eugenio Montale"
+  },
+  {
+    "testo": "Meriggiare pallido e assorto.",
+    "autore": "Eugenio Montale"
+  },
+  {
+    "testo": "Spesso il male di vivere ho incontrato.",
+    "autore": "Eugenio Montale"
+  },
+  {
+    "testo": "Ho sceso, dandoti il braccio, almeno un milione di scale.",
+    "autore": "Eugenio Montale"
+  },
+  {
+    "testo": "M'illumino d'immenso.",
+    "autore": "Giuseppe Ungaretti"
+  },
+  {
+    "testo": "Si sta come d'autunno sugli alberi le foglie.",
+    "autore": "Giuseppe Ungaretti"
+  },
+  {
+    "testo": "Fratelli, di che reggimento siete?",
+    "autore": "Giuseppe Ungaretti"
+  },
+  {
+    "testo": "Non ci si annoia mai abbastanza da smettere di sperare.",
+    "autore": "Cesare Pavese"
+  },
+  {
+    "testo": "Ogni lusso deve essere pagato e le cose di lusso sono le emozioni.",
+    "autore": "Cesare Pavese"
+  },
+  {
+    "testo": "L'unico modo di sfuggire all'abisso è di guardarlo, di misurarlo, di scendervi.",
+    "autore": "Cesare Pavese"
+  },
+  {
+    "testo": "Una città non è fatta di case ma di parole.",
+    "autore": "Italo Calvino"
+  },
+  {
+    "testo": "Leggere un libro è un atto solitario e collettivo al tempo stesso.",
+    "autore": "Italo Calvino"
+  },
+  {
+    "testo": "I libri veri sono quelli che buchi la copertina e ci entri dentro.",
+    "autore": "Italo Calvino"
+  },
+  {
+    "testo": "Non c'è niente di più difficile da trovare della risposta che non sai.",
+    "autore": "Umberto Eco"
+  },
+  {
+    "testo": "Chi legge è pronto a tutto.",
+    "autore": "Umberto Eco"
+  },
+  {
+    "testo": "In Sicilia non ci sono forestieri: tutti sono di casa, tutti hanno radici.",
+    "autore": "Leonardo Sciascia"
+  },
+  {
+    "testo": "La verità è sempre rivoluzionaria.",
+    "autore": "Leonardo Sciascia"
+  },
+  {
+    "testo": "Se questo è un uomo.",
+    "autore": "Primo Levi"
+  },
+  {
+    "testo": "Considerate se questo è un uomo che lavora nel fango che non conosce pace.",
+    "autore": "Primo Levi"
+  },
+  {
+    "testo": "La memoria è uno strumento straordinario, ma fallace.",
+    "autore": "Primo Levi"
+  },
+  {
+    "testo": "Chi dimentica la storia è condannato a riviverla.",
+    "autore": "Primo Levi"
+  },
+  {
+    "testo": "Vivere è necessario; navigare non è necessario.",
+    "autore": "Primo Levi"
+  },
+  {
+    "testo": "Gli uomini passano, le idee restano. Restano le loro tensioni morali e continueranno a camminare sulle gambe di altri uomini.",
+    "autore": "Giovanni Falcone"
+  },
+  {
+    "testo": "La mafia teme la scuola più della giustizia.",
+    "autore": "Giovanni Falcone"
+  },
+  {
+    "testo": "Chi ha paura muore ogni giorno. Chi non ha paura muore una volta sola.",
+    "autore": "Paolo Borsellino"
+  },
+  {
+    "testo": "Non abbiate paura.",
+    "autore": "Papa Giovanni Paolo II"
+  },
+  {
+    "testo": "Aprite le porte a Cristo.",
+    "autore": "Papa Giovanni Paolo II"
+  },
+  {
+    "testo": "La pace è il frutto della giustizia.",
+    "autore": "Papa Giovanni XXIII"
+  },
+  {
+    "testo": "La cosa più difficile del mondo è la coerenza.",
+    "autore": "Papa Francesco"
+  },
+  {
+    "testo": "Chi sono io per giudicare?",
+    "autore": "Papa Francesco"
+  },
+  {
+    "testo": "Una chiesa povera per i poveri.",
+    "autore": "Papa Francesco"
+  },
+  {
+    "testo": "La radio è mia e non la cedo a nessuno.",
+    "autore": "Guglielmo Marconi"
+  },
+  {
+    "testo": "Il futuro appartiene a chi sa aspettare.",
+    "autore": "Enrico Fermi"
+  },
+  {
+    "testo": "Se due teorie spiegano i fatti, preferite la più semplice.",
+    "autore": "Galileo Galilei"
+  },
+  {
+    "testo": "La musica è il silenzio tra le note.",
+    "autore": "Claude Debussy"
+  },
+  {
+    "testo": "Anche un singolo uomo può fare la differenza.",
+    "autore": "Ennio Morricone"
+  },
+  {
+    "testo": "La semplicità è la chiave di tutte le porte.",
+    "autore": "Ennio Morricone"
+  },
+  {
+    "testo": "La resistenza è la più alta forma di politica.",
+    "autore": "Piero Calamandrei"
+  },
+  {
+    "testo": "Se voi volete andare in pellegrinaggio nel luogo dove è nata la nostra Costituzione, andate nelle montagne dove caddero i partigiani.",
+    "autore": "Piero Calamandrei"
+  },
+  {
+    "testo": "La libertà è come l'aria: ci si accorge di quanto vale quando comincia a mancare.",
+    "autore": "Piero Calamandrei"
+  },
+  {
+    "testo": "Non ho nemici, ho solo avversari.",
+    "autore": "Alcide De Gasperi"
+  },
+  {
+    "testo": "La democrazia è la peggiore forma di governo, eccezion fatta per tutte quelle altre forme che si sono sperimentate.",
+    "autore": "Alcide De Gasperi"
+  },
+  {
+    "testo": "Il vero sapere è sapere di non sapere.",
+    "autore": "Giordano Bruno"
+  },
+  {
+    "testo": "L'universo è infinito e in esso ogni punto può essere il centro.",
+    "autore": "Giordano Bruno"
+  },
+  {
+    "testo": "E' meglio essere ardito che cauto, perché la fortuna è donna.",
+    "autore": "Niccolò Machiavelli"
+  },
+  {
+    "testo": "Ogni istituzione umana è frutto del tempo e delle circostanze.",
+    "autore": "Giambattista Vico"
+  },
+  {
+    "testo": "La storia è il dispiegarsi della ragione nel tempo.",
+    "autore": "Giambattista Vico"
+  },
+  {
+    "testo": "Il lavoro nobilita l'uomo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Arte lunga, vita breve.",
+    "autore": "Ippocrate"
+  },
+  {
+    "testo": "La perfezione non è un dettaglio, è l'insieme dei dettagli.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Ciò che non si finisce, non è mai cominciato davvero.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Un'opera d'arte è il frutto di tutta una vita.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Meglio prevenire che curare.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non tutto ciò che luccica è oro.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "I conti non tornano mai tutti.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il buon vino non ha bisogno di frasca.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'erba del vicino è sempre più verde.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non è tutt'oro quel che riluce.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Meglio un giorno da leone che cento da pecora.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Ogni bel gioco dura poco.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'amore fa passare il tempo, il tempo fa passare l'amore.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi si volta indietro perde il passo.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il silenzio è la risposta del saggio.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Chi va lontano si fa ricco di esperienza.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Dove non arriva la forza, arriva l'astuzia.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "L'amicizia vera si vede nelle difficoltà.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Non basta avere un cuore, bisogna saperlo usare.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Ogni alba è una promessa.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il tempo passato non ritorna, ma insegna.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi cammina piano arriva lontano.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Tutto ciò che brilla non è sempre oro, ma può essere luce.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La forza vera è nella gentilezza.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Un sorriso apre più porte di una chiave.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il saggio parla quando ha qualcosa da dire, lo stolto quando deve dire qualcosa.",
+    "autore": "Platone"
+  },
+  {
+    "testo": "L'Italia è una scoperta che non finisce mai.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Vedere Napoli e poi morire.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Roma non fu costruita in un giorno.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Tutte le strade portano a Roma.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il bel paese dov'il sì suona.",
+    "autore": "Dante Alighieri"
+  },
+  {
+    "testo": "Ogni giorno è un capolavoro da creare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non rimpiangere il passato, non temere il futuro, goditi il presente.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il meglio di te stesso è ancora da scoprire.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni difficoltà superata è una medaglia al valore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita non si misura in respiri, ma in momenti che ci tolgono il fiato.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi semina gentilezza raccoglie amicizia.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il coraggio è la paura che ha detto le sue preghiere.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non è importante da dove vieni, ma dove stai andando.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'unico limite è quello che ti poni da solo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Anche le tempeste più forti finiscono.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Dai valore alle piccole cose: sono le fondamenta delle grandi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Sii la luce che vorresti vedere nel mondo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni passo avanti, anche piccolo, è un passo verso il tuo sogno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non arrenderti quando sei stanco, arrenderti quando hai finito.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il rispetto per se stessi è il fondamento di ogni altra virtù.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non lasciare che nessuno spenga la tua luce.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Scegli ogni giorno di essere la versione migliore di te stesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il cambiamento è l'unica costante nella vita.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni fine è un nuovo inizio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è troppo breve per non essere gentili.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Fai del bene e dimenticalo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi vuole veramente, trova sempre il modo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il successo è una scala che non si può salire con le mani in tasca.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La verità è la sola arma che non si spezza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Un cuore grato trasforma il già abbastanza in molto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non basta avere buoni pensieri; bisogna saperli trasformare in buone azioni.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non ha mai sbagliato non ha mai provato niente di nuovo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il vero viaggio è quello interiore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La pazienza è il più silenzioso dei coraggi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Meglio una parola sincera che mille parole vuote.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ascolta impara; chi parla insegna se stesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non serve correre, serve partire.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La semplicità è il segreto della felicità vera.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il cuore che ama non conosce distanza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni incontro lascia un segno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il presente è l'unico tempo in cui possiamo agire.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non temere la solitudine: è lì che ti ritrovi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Le parole hanno il peso che ci mettiamo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Costruisci ponti, non muri.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non rischia non sbaglia, ma non vince mai.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un dono che vale la pena scartare ogni giorno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non esistono strade sbagliate, solo percorsi diversi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni parola di incoraggiamento vale più di mille silenzi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La forza nasce dove finisce la paura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi è fedele a se stesso non tradisce nessuno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il tempo guarisce, ma la memoria conserva.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non dipende da dove sei, ma da dove vuoi arrivare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il silenzio sa dire più di mille parole.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita va avanti: tu decidi come viverla.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ama senza aspettarti nulla in cambio: è la forma più pura di amore.",
+    "autore": "Anonimo"
+  }
+]

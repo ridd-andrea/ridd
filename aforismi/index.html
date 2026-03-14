@@ -211,12 +211,25 @@ function withTimeout(promise, ms) {
 // ════════════════════════════════════════════════════════════
 async function loadLocalDB() {
   if (localDB.length > 0) return localDB;
-  try {
-    const res = await withTimeout(fetch('./aforismi.json'), 6000);
-    if (res.ok) {
-      localDB = await res.json();
+  // Carica tutti e tre i file in parallelo e li unisce
+  const files = ['./aforismi.json', './aforismi2.json', './aforismi3.json'];
+  const results = await Promise.allSettled(
+    files.map(url =>
+      withTimeout(fetch(url), 6000)
+        .then(r => r.ok ? r.json() : [])
+        .catch(() => [])
+    )
+  );
+  results.forEach(r => {
+    if (r.status === 'fulfilled' && Array.isArray(r.value)) {
+      localDB.push(...r.value);
     }
-  } catch (_) {}
+  });
+  // Mescola l'array per variare l'ordine
+  for (let i = localDB.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [localDB[i], localDB[j]] = [localDB[j], localDB[i]];
+  }
   return localDB;
 }
 
