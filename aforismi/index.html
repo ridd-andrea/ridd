@@ -212,7 +212,7 @@ function withTimeout(promise, ms) {
 async function loadLocalDB() {
   if (localDB.length > 0) return localDB;
   // Carica tutti e tre i file in parallelo e li unisce
-  const files = ['./aforismi.json', './aforismi2.json', './aforismi3.json'];
+  const files = ['./aforismi.json', './aforismi2.json', './aforismi3.json', './aforismi4.json', './aforismi5.json', './aforismi6.json'];
   const results = await Promise.allSettled(
     files.map(url =>
       withTimeout(fetch(url), 6000)
