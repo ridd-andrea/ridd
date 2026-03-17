@@ -551,13 +551,108 @@
     margin-top: 5px;
     text-transform: uppercase;
   }
+
+  /* NUOVO PANNELLO: SCARTO DALLA DIREZIONE STORICA */
+  .history-offset-box {
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .history-offset-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .history-offset-item {
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,150,200,0.05));
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .history-bearing {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 15px rgba(0,212,255,0.5);
+    line-height: 1.2;
+  }
+
+  .history-bearing small {
+    font-size: 0.8rem;
+    color: var(--dim);
+  }
+
+  .history-dir-badge {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+
+  .history-diff {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    margin: 12px 0 6px;
+  }
+
+  .history-arrow {
+    font-size: 1.8rem;
+    color: var(--accent2);
+  }
+
+  .history-diff-deg {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+
+  .history-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  .history-unavailable {
+    padding: 20px;
+    color: var(--dim);
+    font-size: 0.75rem;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+
+  /* Messaggio di conferma per posizione memorizzata */
+  .memory-feedback {
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-align: center;
+    margin-top: 8px;
+    min-height: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .memory-feedback.show { opacity: 1; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>&#9651; Rotta Bussola</h1>
-  <p>NAVIGAZIONE IN LINEA RETTA &middot; GRADI AZIMUT</p>
+  <p>NAVIGAZIONE IN LINEA RETTA &middot; GRADI BUSSOLA VERSO DESTINAZIONE</p>
 </header>
 
 <!-- POSIZIONE CORRENTE -->
@@ -578,6 +673,8 @@
       <input type="number" id="myLon" placeholder="es. 9.1900" step="any" oninput="clearResult()">
     </div>
   </div>
+  <!-- Feedback per posizione memorizzata -->
+  <div class="memory-feedback" id="memoryFeedback"></div>
   <!-- Indirizzo rilevato dal GPS -->
   <div class="addr-box" id="myAddressBox">
     <div class="addr-label">&#9673; Indirizzo Rilevato</div>
@@ -592,7 +689,7 @@
   <div class="address-input">
     <label>Cerca per indirizzo</label>
     <div class="address-row">
-      <input type="text" id="addressInput" placeholder="es. Torre Eiffel, Parigi" onkeydown="if(event.key==='Enter') geocode()">
+      <input type="text" id="addressInput" placeholder="es. Piazza Maciachini, Milano" onkeydown="if(event.key==='Enter') geocode()">
       <button class="small-btn" onclick="geocode()">CERCA</button>
     </div>
   </div>
@@ -602,11 +699,11 @@
   <div class="coords-row">
     <div>
       <label>Latitudine</label>
-      <input type="number" id="destLat" placeholder="es. 48.8584" step="any" oninput="clearResult()">
+      <input type="number" id="destLat" placeholder="es. 45.49806" step="any" oninput="clearResult()">
     </div>
     <div>
       <label>Longitudine</label>
-      <input type="number" id="destLon" placeholder="es. 2.2945" step="any" oninput="clearResult()">
+      <input type="number" id="destLon" placeholder="es. 9.18472" step="any" oninput="clearResult()">
     </div>
   </div>
   <div class="error-msg" id="geoError"></div>
@@ -617,8 +714,8 @@
 
 <!-- RISULTATO -->
 <div class="result-box" id="resultBox">
-  <div class="bearing-big" id="bearingVal">---&deg;</div>
-  <div class="bearing-label" id="bearingDir">ROTTA BUSSOLA</div>
+  <div class="bearing-big" id="bearingVal">---°</div>
+  <div class="bearing-label" id="bearingDir">GRADI BUSSOLA VERSO DESTINAZIONE</div>
 
   <div class="compass-wrap">
     <div class="compass-outer">
@@ -694,12 +791,20 @@
         </div>
       </div>
     </div>
+
+    <!-- NUOVO PANNELLO: SCARTO DALLA DIREZIONE STORICA -->
+    <div class="history-offset-box" id="historyOffsetBox">
+      <div class="history-offset-title">Scarto dalla Direzione Storica</div>
+      <div id="historyOffsetContent"></div>
+    </div>
   </div>
 </div>
 </div>
 
 <script>
   var myLatVal = null, myLonVal = null;
+  var lastTwoPositions = []; // Array per memorizzare le ultime due posizioni
+  var memoryFeedbackTimeout;
 
   // === GPS ===
   function getGPS() {
@@ -724,6 +829,8 @@
         document.getElementById('gpsIcon').textContent = '\u25CE';
         clearResult();
         reverseGeocode(myLatVal, myLonVal);
+        
+        // NON memorizziamo automaticamente qui
       },
       function(err) {
         var msgs = { 1: 'Permesso GPS negato', 2: 'Posizione non disponibile', 3: 'Timeout GPS' };
@@ -733,6 +840,24 @@
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 5000 }
     );
+  }
+
+  // Memorizza le ultime due posizioni (FIFO) - chiamata SOLO da calculate()
+  function memorizzaPosizione(lat, lon) {
+    // Evita di memorizzare posizioni duplicate consecutive
+    if (lastTwoPositions.length > 0) {
+      var last = lastTwoPositions[lastTwoPositions.length - 1];
+      if (last.lat === lat && last.lon === lon) {
+        return false; // Posizione identica all'ultima, non memorizzare
+      }
+    }
+    
+    lastTwoPositions.push({ lat: lat, lon: lon, timestamp: new Date().getTime() });
+    if (lastTwoPositions.length > 2) {
+      lastTwoPositions.shift(); // Mantieni solo le ultime 2
+    }
+    console.log('Posizioni memorizzate:', lastTwoPositions);
+    return true;
   }
 
   function setGpsStatus(msg, cls) {
@@ -807,7 +932,7 @@
     }
   }
 
-  // === CALCOLO ROTTA ===
+  // === CALCOLO ROTTA (CORRETTO) ===
   function toRad(d) { return d * Math.PI / 180; }
   function toDeg(r) { return r * 180 / Math.PI; }
 
@@ -816,7 +941,8 @@
     var dl = toRad(lon2 - lon1);
     var y = Math.sin(dl) * Math.cos(p2);
     var x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
-    return (toDeg(Math.atan2(y, x)) + 360) % 360;
+    var bearing = (toDeg(Math.atan2(y, x)) + 360) % 360;
+    return bearing;
   }
 
   function calcDistance(lat1, lon1, lat2, lon2) {
@@ -841,21 +967,45 @@
     if (isNaN(lat1) || isNaN(lon1)) { alert('Inserisci o acquisisci la tua posizione corrente.'); return; }
     if (isNaN(lat2) || isNaN(lon2)) { alert('Inserisci le coordinate della destinazione.'); return; }
 
+    // MEMORIZZA LA POSIZIONE CORRENTE (solo ora, quando si preme CALCOLA)
+    var memorized = memorizzaPosizione(lat1, lon1);
+    
+    // Mostra feedback se è stata memorizzata una nuova posizione
+    if (memorized) {
+      var feedback = document.getElementById('memoryFeedback');
+      feedback.textContent = '✓ Posizione corrente memorizzata nello storico';
+      feedback.classList.add('show');
+      
+      clearTimeout(memoryFeedbackTimeout);
+      memoryFeedbackTimeout = setTimeout(function() {
+        feedback.classList.remove('show');
+      }, 2000);
+    }
+
+    // Calcola la direzione (rotta bussola) dalla posizione corrente alla destinazione
     var bearing = calcBearing(lat1, lon1, lat2, lon2);
     var dist    = calcDistance(lat1, lon1, lat2, lon2);
     var dir     = bearingToText(bearing);
 
-    document.getElementById('bearingVal').textContent  = Math.round(bearing) + '\u00B0';
-    document.getElementById('bearingDir').textContent  = dir + '  \u00B7  ROTTA BUSSOLA';
+    // Mostra con 1 decimale - QUESTI SONO I GRADI BUSSOLA VERSO LA DESTINAZIONE
+    document.getElementById('bearingVal').textContent  = bearing.toFixed(1) + '°';
+    document.getElementById('bearingDir').textContent  = dir + '  \u00B7  VERSO DESTINAZIONE';
     document.getElementById('distVal').textContent     = dist >= 1 ? dist.toFixed(1) + ' km' : Math.round(dist * 1000) + ' m';
     document.getElementById('directionVal').textContent = dir;
     document.getElementById('fromVal').textContent     = lat1.toFixed(4) + ', ' + lon1.toFixed(4);
     document.getElementById('toVal').textContent       = lat2.toFixed(4) + ', ' + lon2.toFixed(4);
 
+    // CORREZIONE: La bussola deve puntare verso la destinazione
+    // L'ago rosso (nord) deve essere allineato con il nord geografico
+    // Quindi ruotiamo l'ago di (bearing) gradi in senso orario
     document.getElementById('needleWrap').style.transform = 'rotate(' + bearing + 'deg)';
 
     document.getElementById('resultBox').className = 'result-box visible';
     updateSkyObjects(lat1, lon1, bearing);
+    
+    // Aggiorna il pannello storico
+    updateHistoryOffset(lat1, lon1, lat2, lon2);
+    
     document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
@@ -863,10 +1013,64 @@
     document.getElementById('resultBox').className = 'result-box';
   }
 
+  // === FUNZIONE: Calcola scarto dalla direzione storica ===
+  function updateHistoryOffset(currentLat, currentLon, destLat, destLon) {
+    var contentEl = document.getElementById('historyOffsetContent');
+    
+    if (lastTwoPositions.length < 2) {
+      contentEl.innerHTML = '<div class="history-unavailable">⏳ Premi "CALCOLA ROTTA" almeno due volte per avere uno storico.</div>';
+      return;
+    }
+
+    // Prendi le ultime due posizioni (la più recente è l'ultima nell'array)
+    var pos1 = lastTwoPositions[0]; // Più vecchia
+    var pos2 = lastTwoPositions[1]; // Più recente
+
+    // Calcola la direzione tra le due posizioni storiche (da pos1 a pos2)
+    var historyBearing = calcBearing(pos1.lat, pos1.lon, pos2.lat, pos2.lon);
+    var historyDir = bearingToText(historyBearing);
+
+    // Calcola la direzione dalla posizione corrente alla destinazione (rotta bussola)
+    var destBearing = calcBearing(currentLat, currentLon, destLat, destLon);
+
+    // Calcola la differenza (scarto) = direzione storica - rotta bussola
+    var diff = angleDiff(historyBearing, destBearing);
+    var absDiff = Math.abs(diff);
+    var absDiffRounded = Math.abs(Math.round(diff * 10) / 10); // 1 decimale
+
+    var arrow, label;
+    if (absDiff <= 2) {
+      arrow = '↑';
+      label = 'In linea con la rotta attuale';
+    } else if (diff > 0) {
+      // diff > 0 significa che historyBearing > destBearing
+      // Quindi devi girare a sinistra
+      arrow = '← ' + absDiffRounded.toFixed(1) + '°';
+      label = 'Gira a sinistra di ' + absDiffRounded.toFixed(1) + '°';
+    } else {
+      // diff < 0 significa che historyBearing < destBearing
+      // Quindi devi girare a destra
+      arrow = absDiffRounded.toFixed(1) + '° →';
+      label = 'Gira a destra di ' + absDiffRounded.toFixed(1) + '°';
+    }
+
+    var html = `
+      <div class="history-offset-item">
+        <div class="history-bearing">${historyBearing.toFixed(1)}° <small>${historyDir}</small></div>
+        <div class="history-dir-badge">Direzione ultimi due punti</div>
+        <div class="history-diff">
+          <span class="history-arrow">${arrow}</span>
+        </div>
+        <div class="history-diff-deg">${absDiffRounded.toFixed(1)}°</div>
+        <div class="history-label">${label}</div>
+      </div>
+    `;
+
+    contentEl.innerHTML = html;
+  }
 
   // ===================================================
   // ASTRONOMIA: posizione Sole e Luna
-  // Algoritmo basato su Jean Meeus "Astronomical Algorithms"
   // ===================================================
 
   function toRad2(d) { return d * Math.PI / 180; }
@@ -987,7 +1191,7 @@
     var sunVisible = sun.alt > -0.833;  // correzione rifrazione standard
     var sunItem = document.getElementById('sunItem');
     sunItem.className = 'sky-item sun' + (sunVisible ? '' : ' hidden-obj');
-    document.getElementById('sunDeg').textContent   = Math.round(sun.az) + '°';
+    document.getElementById('sunDeg').textContent   = sun.az.toFixed(1) + '°';
     document.getElementById('sunDir').textContent   = dirs[Math.round(sun.az / 22.5) % 16];
     document.getElementById('sunElev').textContent  = 'Elevazione: ' + sun.alt.toFixed(1) + '°';
     document.getElementById('sunStatus').textContent = sunVisible ? 'VISIBILE' : 'SOTTO ORIZZONTE';
@@ -996,7 +1200,7 @@
     var moonVisible = moon.alt > 0;
     var moonItem = document.getElementById('moonItem');
     moonItem.className = 'sky-item moon' + (moonVisible ? '' : ' hidden-obj');
-    document.getElementById('moonDeg').textContent   = Math.round(moon.az) + '°';
+    document.getElementById('moonDeg').textContent   = moon.az.toFixed(1) + '°';
     document.getElementById('moonDir').textContent   = dirs[Math.round(moon.az / 22.5) % 16];
     document.getElementById('moonElev').textContent  = 'Elevazione: ' + moon.alt.toFixed(1) + '°';
     document.getElementById('moonStatus').textContent = moonVisible ? 'VISIBILE' : 'SOTTO ORIZZONTE';
@@ -1005,18 +1209,19 @@
     function setOffset(itemId, degId, arrowId, labelId, bodyAz, bodyVisible) {
       var item   = document.getElementById(itemId);
       var diff   = angleDiff(routeBearing, bodyAz);   // + = corpo a sinistra della rotta, devo girare a dx
-      var absDiff = Math.abs(Math.round(diff));
+      var absDiff = Math.abs(diff);
+      var absDiffRounded = Math.abs(Math.round(diff * 10) / 10);
       var arrow, label;
 
       if (absDiff <= 2) {
         arrow = '↑';   // freccia su = in linea
         label = 'In linea con la rotta';
       } else if (diff > 0) {
-        arrow = '← ' + absDiff + '°';   // sinistra
-        label = 'Gira a sinistra';
+        arrow = '← ' + absDiffRounded.toFixed(1) + '°';   // sinistra
+        label = 'Gira a sinistra di ' + absDiffRounded.toFixed(1) + '°';
       } else {
-        arrow = absDiff + '° →';   // destra
-        label = 'Gira a destra';
+        arrow = absDiffRounded.toFixed(1) + '° →';   // destra
+        label = 'Gira a destra di ' + absDiffRounded.toFixed(1) + '°';
       }
 
       if (!bodyVisible) {
@@ -1025,7 +1230,7 @@
         item.className = item.className.replace(' hidden-obj','');
       }
 
-      document.getElementById(degId).textContent   = absDiff + '°';
+      document.getElementById(degId).textContent   = absDiffRounded.toFixed(1) + '°';
       document.getElementById(arrowId).textContent = arrow;
       document.getElementById(labelId).textContent = label;
     }
