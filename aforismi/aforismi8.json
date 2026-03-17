@@ -1,0 +1,1094 @@
+[
+  {
+    "testo": "La vita è teatro: recita bene la tua parte.",
+    "autore": "Epitteto"
+  },
+  {
+    "testo": "Il cinema è una macchina del tempo.",
+    "autore": "Orson Welles"
+  },
+  {
+    "testo": "Tutto il mondo è un palcoscenico e noi siamo semplici attori.",
+    "autore": "William Shakespeare"
+  },
+  {
+    "testo": "Il grande attore è colui che fa sembrare facile il difficile.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il teatro è uno specchio deformante della realtà, ma più veritiero dello specchio normale.",
+    "autore": "Bertolt Brecht"
+  },
+  {
+    "testo": "Il cinema è un'illusione che dice la verità.",
+    "autore": "François Truffaut"
+  },
+  {
+    "testo": "La commedia è la tragedia più il tempo.",
+    "autore": "Carol Burnett"
+  },
+  {
+    "testo": "Il teatro muore ogni sera e rinasce ogni sera.",
+    "autore": "Peter Brook"
+  },
+  {
+    "testo": "Recitare significa vivere più vite in una sola.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il film non finisce quando escono i titoli di coda: finisce quando smetti di pensarci.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La maschera spesso rivela più del volto.",
+    "autore": "Oscar Wilde"
+  },
+  {
+    "testo": "Il teatro è la vita intensificata.",
+    "autore": "Konstantin Stanislavski"
+  },
+  {
+    "testo": "Chi non sa piangere non sa recitare.",
+    "autore": "Proverbio teatrale"
+  },
+  {
+    "testo": "Il drammaturgo non inventa storie: le scopre.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il grande regista dà voce al silenzio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La moda passa, lo stile rimane.",
+    "autore": "Coco Chanel"
+  },
+  {
+    "testo": "Non c'è niente di più comodo di una buona semplicità.",
+    "autore": "Giorgio Armani"
+  },
+  {
+    "testo": "Vestirsi bene è una forma di rispetto verso gli altri.",
+    "autore": "Tom Ford"
+  },
+  {
+    "testo": "Il lusso deve essere comodo; altrimenti non è lusso.",
+    "autore": "Coco Chanel"
+  },
+  {
+    "testo": "Lo stile non riguarda i vestiti: riguarda come indossi la tua vita.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La moda è arte da indossare.",
+    "autore": "Coco Chanel"
+  },
+  {
+    "testo": "Chi si veste con grazia porta rispetto alla propria persona.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "L'eleganza è rifiuto.",
+    "autore": "Coco Chanel"
+  },
+  {
+    "testo": "Il nero è il colore che contiene tutti gli altri.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La semplicità è l'unico vero lusso.",
+    "autore": "Coco Chanel"
+  },
+  {
+    "testo": "Dis-moi ce que tu manges, je te dirai ce que tu es — Dimmi cosa mangi e ti dirò chi sei.",
+    "autore": "Jean Anthelme Brillat-Savarin"
+  },
+  {
+    "testo": "Il buon cibo è la base della vera felicità.",
+    "autore": "Auguste Escoffier"
+  },
+  {
+    "testo": "Mangiare bene è una forma d'arte.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "La cucina è chimica, ma l'arte culinaria è magia.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "A tavola si fa la pace.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Il cibo fatto con amore nutre l'anima oltre che il corpo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il vino buono non ha bisogno di elogio.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "La cucina di una nazione è specchio della sua cultura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non mangia insieme agli altri non vive davvero in comunità.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il pane è il cibo dell'anima oltre che del corpo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "In cucina, la semplicità è la vetta della sofisticazione.",
+    "autore": "Paul Bocuse"
+  },
+  {
+    "testo": "Chi cucina con amore cucina bene.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La pasta al dente è la metafora della vita giusta: né troppo cruda né troppo cotta.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il caffè è un abbraccio caldo ogni mattina.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'olio d'oliva è l'oro verde del Mediterraneo.",
+    "autore": "Proverbio mediterraneo"
+  },
+  {
+    "testo": "L'Italia è un giardino che Dio ha coltivato con le proprie mani.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Le colline toscane sono la forma stessa della perfezione.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Venezia è il sogno che non vuoi che finisca.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Roma eterna: ogni pietra racconta tremila anni.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Napoli è un teatro all'aperto che non si chiude mai.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La Sicilia è il cuore del Mediterraneo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Le Dolomiti sono le cattedrali della natura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il lago di Como è uno specchio del cielo in terra.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La Costiera Amalfitana è poesia fatta paesaggio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La Val d'Orcia è il paesaggio più bello del mondo.",
+    "autore": "Proverbio toscano"
+  },
+  {
+    "testo": "Il coraggio non è un'assenza di paura: è una decisione che qualcosa è più importante della paura.",
+    "autore": "Ambrose Redmoon"
+  },
+  {
+    "testo": "Chi ha paura perde, chi non ha paura vince.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il coraggio vero si misura nelle piccole scelte quotidiane.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Sii coraggioso abbastanza da vivere la vita che vuoi davvero.",
+    "autore": "Oprah Winfrey"
+  },
+  {
+    "testo": "Non è coraggioso chi non ha paura, ma chi la ha e agisce lo stesso.",
+    "autore": "Nelson Mandela"
+  },
+  {
+    "testo": "Il coraggio è contagioso.",
+    "autore": "Billy Graham"
+  },
+  {
+    "testo": "Chi non osa non sbaglia, ma non vive.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il primo passo è sempre il più coraggioso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Sii il leone che conosce la paura ma non la lascia guidare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il coraggio di cominciare è già metà dell'impresa.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "L'errore è umano; imparare dall'errore è divino.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il fallimento è solo la prova che hai tentato qualcosa di difficile.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non sbaglia non prova.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Gli errori non sono ostacoli: sono frecce che indicano la direzione da correggere.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il grande scienziato fa grandi errori.",
+    "autore": "Niels Bohr"
+  },
+  {
+    "testo": "Sbagliare è necessario; sbagliare sempre le stesse cose è stupido.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'unico errore imperdonabile è non imparare dagli errori.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non sbaglia mai non ha mai tentato niente di nuovo.",
+    "autore": "Albert Einstein"
+  },
+  {
+    "testo": "Il fallimento è un insegnante duro ma onesto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni errore ti avvicina al risultato giusto, se impari da esso.",
+    "autore": "Thomas Edison"
+  },
+  {
+    "testo": "Il cambiamento inizia dove finisce la comodità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non opporti al cambiamento: cavalcalo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi si adatta sopravvive; chi non si adatta svanisce.",
+    "autore": "Charles Darwin"
+  },
+  {
+    "testo": "Il cambiamento è la sola costante nell'universo.",
+    "autore": "Eraclito"
+  },
+  {
+    "testo": "Non temere di cambiare: temi di restare sempre uguale.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il mondo cambia: o lo guidi o ti trascina.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi sa cambiare sa crescere.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni cambiamento è una perdita e un guadagno allo stesso tempo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il vero coraggio è cambiare quando è difficile.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non cambia rimane fermo: la vita invece va avanti.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi sa comunicare sa connettere.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Le parole giuste al momento giusto cambiano il mondo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ascoltare è l'atto più generoso che puoi compiere.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non si comunica solo con le parole: si comunica con il corpo, gli occhi, il silenzio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Una buona conversazione vale più di cento libri.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi parla a tutti non parla a nessuno.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Le parole sono frecce: una volta scoccate non si riprendono.",
+    "autore": "Proverbio arabo"
+  },
+  {
+    "testo": "Chi sa fare domande sa ottenere risposte.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La comunicazione è il sangue delle relazioni.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Un sorriso vale più di mille parole.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "I sogni non sono fuga dalla realtà: sono la strada per cambiarla.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi sogna in grande è già a metà dell'opera.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni sono il modo in cui l'anima parla al futuro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non lasciare che la paura di fallire uccida i tuoi sogni.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni più belli sono quelli che diventano progetti.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi smette di sognare smette di vivere davvero.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Sogna in grande: il mondo ha bisogno di visionari.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il sogno è il seme, il lavoro è il sole, la perseveranza è la pioggia.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non ha sogni non ha direzione.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni sono le stelle guida dell'anima.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'uomo è l'unico animale che ride, che piange e che mente.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Siamo tutti speciali, il che significa che nessuno è speciale.",
+    "autore": "Brad Bird"
+  },
+  {
+    "testo": "L'uomo è buono per natura e corrotto dalla società.",
+    "autore": "Jean-Jacques Rousseau"
+  },
+  {
+    "testo": "L'uomo è il lupo dell'uomo.",
+    "autore": "Thomas Hobbes"
+  },
+  {
+    "testo": "Siamo tutti fatti di stelle.",
+    "autore": "Carl Sagan"
+  },
+  {
+    "testo": "L'uomo è la misura di tutte le cose, ma anche la causa di tutte le catastrofi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Siamo tutti stranieri in qualche modo: ecco perché dobbiamo amarci.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'uomo è grande quando riconosce la propria piccolezza.",
+    "autore": "Blaise Pascal"
+  },
+  {
+    "testo": "Siamo fatti di ciò che amiamo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'uomo non è solo corpo né solo anima: è la loro danza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il corpo è il tempio dell'anima: rispettalo.",
+    "autore": "Platone"
+  },
+  {
+    "testo": "Chi non si prende cura del corpo non si prende cura della vita.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il movimento è vita.",
+    "autore": "Ippocrate"
+  },
+  {
+    "testo": "Mens sana in corpore sano è il più antico degli equilibri.",
+    "autore": "Giovenale"
+  },
+  {
+    "testo": "Il corpo sa cose che la mente non ha ancora imparato.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ascolta il corpo non ha bisogno del medico spesso.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il riposo è parte dell'allenamento, non la sua assenza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il corpo ha bisogno di movimento come l'anima ha bisogno di silenzio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi rispetta il proprio corpo rispetta la vita che lo abita.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La salute non è tutto, ma senza salute tutto è niente.",
+    "autore": "Arthur Schopenhauer"
+  },
+  {
+    "testo": "Sii chi sei, non chi il mondo vuole che tu sia.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'identità è il filo che lega il passato al futuro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi conosce se stesso non si perde.",
+    "autore": "Lao Tzu"
+  },
+  {
+    "testo": "L'autenticità è il coraggio di essere se stessi di fronte al mondo.",
+    "autore": "Brené Brown"
+  },
+  {
+    "testo": "Ogni persona è un universo: esplorala con rispetto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non lasciare che gli altri definiscano chi sei.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi imita gli altri tradisce se stesso.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La tua storia è la tua forza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Sii te stesso con fierezza: sei irripetibile.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'identità autentica nasce dal coraggio di guardarsi allo specchio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La creatività è intelligence che si diverte a rompere le regole.",
+    "autore": "Albert Einstein"
+  },
+  {
+    "testo": "Chi non crea consuma.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'arte è il modo in cui l'umanità dice: sono stato qui.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni atto creativo è un atto di ribellione contro il grigio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La fantasia non ha limiti: solo la pigrizia li crea.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi crea bellezza dona al mondo più di chi conquista territori.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La creatività è contagiosa: falla girare.",
+    "autore": "Albert Einstein"
+  },
+  {
+    "testo": "Ogni grande opera è nata da un momento di follia controllata.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non sa giocare non sa creare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La creatività è il lusso accessibile a tutti.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La pace non si impone: si costruisce mattone per mattone.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non ha pace dentro non la porterà mai fuori.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La pace vera non è assenza di guerra: è presenza di giustizia.",
+    "autore": "Johan Galtung"
+  },
+  {
+    "testo": "Per fare la pace bisogna essere almeno in due disposti.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La pace è il fiore più raro: va coltivato ogni giorno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta pace cambia il mondo senza fare rumore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non esiste strada per la pace: la pace è la strada.",
+    "autore": "Mahatma Gandhi"
+  },
+  {
+    "testo": "La pace interiore è il fondamento di tutto il resto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ha fatto la pace con se stesso ha fatto la pace con il mondo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La pace è il silenzio che parla più forte di qualsiasi guerra.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'umanità è una famiglia che non si conosce ancora bene.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni essere umano è un libro che merita di essere letto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Siamo tutti stranieri in questo pianeta: trattiamoci con rispetto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'umanità non è una razza: è una scelta.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non vede l'umanità nell'altro ha perso la propria.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Tratta ogni persona come se fosse l'ultima che incontrerai.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La bontà è il denominatore comune di tutta l'umanità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Siamo tutti figli dello stesso cielo.",
+    "autore": "Proverbio universale"
+  },
+  {
+    "testo": "L'empatia è il ponte che unisce le isole della solitudine.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ama l'umanità ama Dio, qualunque nome gli dia.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il futuro dipende da ciò che fai oggi.",
+    "autore": "Mahatma Gandhi"
+  },
+  {
+    "testo": "Prepara il futuro: non limitarti a preoccupartene.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Il futuro appartiene a chi crede nella bellezza dei propri sogni.",
+    "autore": "Eleanor Roosevelt"
+  },
+  {
+    "testo": "Non prevedere il futuro: crearlo.",
+    "autore": "Antoine de Saint-Exupéry"
+  },
+  {
+    "testo": "Il futuro è aperto: sei tu che lo chiudi o lo apri con le tue scelte.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi semina oggi raccoglie domani.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Il futuro è la somma di tutti i presenti ben vissuti.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare il futuro: costruiscilo adesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non pensa al futuro non ha presente.",
+    "autore": "Confucio"
+  },
+  {
+    "testo": "Il futuro sorride a chi lo prepara con cura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un dono quotidiano: aprilo ogni mattina.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non perdere tempo a invidiare: usalo per migliorare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi vive con passione non muore mai del tutto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è bella quando la si vive con intenzione.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare che qualcuno ti renda felice: sii la fonte della tua felicità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ama la vita la rende degna di essere amata.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Ogni giorno è un capolavoro: pittalo con cura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di meravigliarti: è il segreto della giovinezza interiore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è meravigliosa: abbracciala ogni giorno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta amore, coraggio e saggezza ha tutto ciò che serve per vivere bene.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Vivi, ama, impara, lascia un segno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è il più grande dei misteri: vivila con stupore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare domani: oggi è già un dono.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ha vissuto con amore non ha vissuto invano.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un viaggio: ogni tappa ha il suo valore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non cercare la perfezione: cerca la pienezza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta gioia lascia una traccia indelebile nel cuore degli altri.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è bella, è piena, è tua: rispettala e amala.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di scegliere la luce: il mondo ne ha bisogno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ha vissuto bene ha già vinto tutto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I valori sono la bussola della vita.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi vive secondo i propri valori vive con integrità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I valori trasmessi ai figli sono il più grande patrimonio.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Chi non ha principi non ha spina dorsale.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "I valori si testano nelle difficoltà, non nelle comodità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi è coerente con i propri valori guadagna rispetto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I valori autentici non cambiano con il vento.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La scuola non è un edificio: è una comunità che impara insieme.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ama la scuola ama il futuro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'istruzione è il passaporto per il futuro.",
+    "autore": "Malcolm X"
+  },
+  {
+    "testo": "Un insegnante che ispira vale più di mille libri di testo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La scuola prepara per la vita, non solo per il lavoro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi investe nell'istruzione investe nella civiltà.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'educazione è la chiave che apre tutte le porte.",
+    "autore": "Oprah Winfrey"
+  },
+  {
+    "testo": "Chi impara a leggere impara a pensare.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La scuola è il luogo dove si impara a fare domande.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non studia oggi si pente domani.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "Scrivere è il modo più diretto per capire cosa pensi.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi scrive fissa il pensiero nell'eternità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La scrittura è la danza del pensiero.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non scrive dimentica; chi scrive ricorda per sempre.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "Scrivere è fare ordine nel caos interiore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi scrive con onestà scrive per tutti.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La penna è più potente della spada.",
+    "autore": "Edward Bulwer-Lytton"
+  },
+  {
+    "testo": "Chi scrive regala una parte di sé al mondo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Scrivere è scegliere le parole giuste tra l'infinito delle possibilità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ha qualcosa da dire ha il dovere di scriverlo.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La poesia è ciò che si perde nella traduzione.",
+    "autore": "Robert Frost"
+  },
+  {
+    "testo": "Chi legge poesia amplia l'anima.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La poesia è la parola nella sua forma più pura.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi scrive poesia costruisce case per l'anima.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La poesia dice in dieci parole ciò che la prosa non riesce a dire in cento.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non ha poesia nell'anima non vede la bellezza del mondo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La poesia è il battito del cuore dell'umanità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi legge poesia impara a sentire più profondamente.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La poesia trasforma il dolore in bellezza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi scrive poesia regala immortalità all'effimero.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni sono le porte che la mente apre sul futuro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non sogna non viaggia.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "I sogni non chiedono il permesso: accadono.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi insegue i sogni insegue se stesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni sono la forma più pura di libertà.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi ha sogni grandi ha una vita grande.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "I sogni non sono una fuga: sono un progetto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi sogna a occhi aperti costruisce il futuro.",
+    "autore": "T.E. Lawrence"
+  },
+  {
+    "testo": "I sogni sono il linguaggio dell'anima quando il corpo dorme.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non ha sogni ha già smesso di vivere davvero.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi agisce cambia il mondo; chi parla cambia solo l'aria.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La vita è un privilegio: onoralo ogni giorno con scelte consapevoli.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di sognare: i sogni sono la mappa dell'anima.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta speranza porta il più grande dei doni.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La vita è meravigliosa quando sei presente ad essa.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare la felicità: comincia a costruirla adesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta armonia costruisce ponti tra le anime.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è piena di senso quando la dedichi a qualcosa di più grande.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di essere grato: la gratitudine è il segreto della gioia.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta amore al proprio cammino non cammina mai davvero da solo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un dono quotidiano: trattalo con reverenza.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare che il mondo ti veda: mostragli chi sei.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta determinazione non conosce ostacoli insormontabili.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è bella nella sua imperfezione umana.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di essere te stesso: è il contributo più unico che puoi dare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta bellezza al quotidiano eleva ogni giorno a capolavoro.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'animo gentile non conosce inimicizie.",
+    "autore": "Proverbio toscano"
+  },
+  {
+    "testo": "Chi si comporta bene dorme bene.",
+    "autore": "Proverbio italiano"
+  },
+  {
+    "testo": "La pazienza è la virtù dei forti e la debolezza dei deboli.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi aspetta il momento giusto crea il momento giusto.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "L'ottimismo è la fede in azione che trasforma il possibile in reale.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi non si stanca di cercare trova sempre qualcosa di prezioso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un'onda: chi sa surfare la gode appieno.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non rimandare la vita al futuro: il futuro è adesso.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta saggezza porta serenità a chi lo circonda.",
+    "autore": "Proverbio"
+  },
+  {
+    "testo": "La vita è bella anche nelle sue contraddizioni.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere di costruire: anche le cattedrali hanno richiesto secoli.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta equilibrio porta armonia al mondo intorno a sé.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un'opportunità unica: non lasciartela scappare.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare che qualcuno ti dia il permesso: prenditi la responsabilità.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta rispetto al tempo porta rispetto alla vita stessa.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è fatta di scelte: ogni scelta ti costruisce o ti distrugge.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non smettere mai di imparare dall'esperienza: è la scuola migliore.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Chi porta cura alla propria anima porta cura al mondo.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "La vita è un viaggio senza ritorno: goditi ogni paesaggio.",
+    "autore": "Anonimo"
+  },
+  {
+    "testo": "Non aspettare che cambino le circostanze: adatta te stesso.",
+    "autore": "Epitteto"
+  }
+]
