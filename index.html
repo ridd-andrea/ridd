@@ -64,7 +64,7 @@
     padding: 20px;
     width: 100%;
     max-width: 440px;
-    margin-bottom: 16px;
+    margin-bottom: 8px; /* MODIFICATO: da 16px a 8px per ridurre il margine inferiore */
     animation: fadeUp 0.6s ease both;
   }
 
@@ -646,6 +646,39 @@
     transition: opacity 0.3s;
   }
   .memory-feedback.show { opacity: 1; }
+
+  /* Pulsanti di copia */
+  .copy-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .copy-btn {
+    flex: 1;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn:hover { background: rgba(0,212,255,0.2); }
+  .copy-feedback {
+    font-size: 0.6rem;
+    color: #00ff88;
+    text-align: center;
+    margin-top: 4px;
+    min-height: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .copy-feedback.show { opacity: 1; }
 </style>
 </head>
 <body>
@@ -673,6 +706,11 @@
       <input type="number" id="myLon" placeholder="es. 9.1900" step="any" oninput="clearResult()">
     </div>
   </div>
+  <!-- PULSANTI COPIA per Posizione Corrente -->
+  <div class="copy-buttons">
+    <button class="copy-btn" onclick="copyCoordinates('myLat', 'myLon', 'copyFeedbackCurrent')">📋 COPIA COORDINATE</button>
+  </div>
+  <div class="copy-feedback" id="copyFeedbackCurrent"></div>
   <!-- Feedback per posizione memorizzata -->
   <div class="memory-feedback" id="memoryFeedback"></div>
   <!-- Indirizzo rilevato dal GPS -->
@@ -699,13 +737,18 @@
   <div class="coords-row">
     <div>
       <label>Latitudine</label>
-      <input type="number" id="destLat" placeholder="es. 45.49806" step="any" oninput="clearResult()">
+      <input type="number" id="destLat" placeholder="es. 48.8584" step="any" oninput="clearResult()">
     </div>
     <div>
       <label>Longitudine</label>
-      <input type="number" id="destLon" placeholder="es. 9.18472" step="any" oninput="clearResult()">
+      <input type="number" id="destLon" placeholder="es. 2.2945" step="any" oninput="clearResult()">
     </div>
   </div>
+  <!-- PULSANTI COPIA per Destinazione -->
+  <div class="copy-buttons">
+    <button class="copy-btn" onclick="copyCoordinates('destLat', 'destLon', 'copyFeedbackDest')">📋 COPIA COORDINATE</button>
+  </div>
+  <div class="copy-feedback" id="copyFeedbackDest"></div>
   <div class="error-msg" id="geoError"></div>
 </div>
 
@@ -805,6 +848,35 @@
   var myLatVal = null, myLonVal = null;
   var lastTwoPositions = []; // Array per memorizzare le ultime due posizioni
   var memoryFeedbackTimeout;
+  var copyFeedbackTimeout;
+
+  // === FUNZIONE COPIA COORDINATE ===
+  function copyCoordinates(latId, lonId, feedbackId) {
+    var lat = document.getElementById(latId).value;
+    var lon = document.getElementById(lonId).value;
+    
+    if (!lat || !lon) {
+      alert('Inserisci prima latitudine e longitudine');
+      return;
+    }
+
+    var textToCopy = lat + ', ' + lon;
+    
+    // Usa l'API Clipboard moderna
+    navigator.clipboard.writeText(textToCopy).then(function() {
+      var feedback = document.getElementById(feedbackId);
+      feedback.textContent = '✓ Coordinate copiate: ' + textToCopy;
+      feedback.classList.add('show');
+      
+      clearTimeout(copyFeedbackTimeout);
+      copyFeedbackTimeout = setTimeout(function() {
+        feedback.classList.remove('show');
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Errore nella copia: ', err);
+      alert('Errore durante la copia negli appunti');
+    });
+  }
 
   // === GPS ===
   function getGPS() {
