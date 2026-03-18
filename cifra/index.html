@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ChaCha20 Cifratore</title>
+<style>
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; 
+    margin: 0; 
+    padding: 15px; 
+    min-height: 100vh;
+    font-size: 16px;
+}
+.container { max-width: 500px; margin: 0 auto; }
+h2 { 
+    text-align: center; 
+    margin: 10px 0 20px; 
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #e94560, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.tabs { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    background: rgba(0,0,0,0.3);
+    padding: 5px;
+    border-radius: 12px;
+}
+.tab { 
+    flex: 1; 
+    padding: 14px; 
+    border: none; 
+    background: transparent; 
+    color: #888; 
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+.tab.active { 
+    background: #e94560; 
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(233,69,96,0.4);
+}
+.input-group { margin-bottom: 15px; }
+label { 
+    display: block; 
+    margin-bottom: 6px; 
+    font-size: 0.9rem; 
+    color: #aaa;
+    font-weight: 500;
+}
+textarea, input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid rgba(233,69,96,0.3);
+    color: #fff;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+}
+textarea { min-height: 120px; resize: vertical; }
+input:focus, textarea:focus { border-color: #e94560; background: rgba(0,0,0,0.4); }
+.btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #e94560 0%, #c73e54 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 8px 25px rgba(233,69,96,0.3);
+    transition: transform 0.2s;
+}
+.btn:active { transform: scale(0.98); }
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(233,69,96,0.3);
+    display: none;
+    word-break: break-all;
+}
+.result.show { display: block; animation: slideUp 0.3s; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.result-label { color: #e94560; font-weight: 600; margin-bottom: 10px; font-size: 0.9rem; }
+.result-text { 
+    background: rgba(0,0,0,0.3); 
+    padding: 15px; 
+    border-radius: 8px; 
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.copy-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(233,69,96,0.5);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.copy-btn.copied { background: #4ade80; border-color: #4ade80; color: #1a1a2e; }
+.error { 
+    background: rgba(239,68,68,0.2); 
+    color: #fca5a5; 
+    padding: 12px; 
+    border-radius: 8px; 
+    margin-top: 15px;
+    display: none;
+    border: 1px solid rgba(239,68,68,0.3);
+}
+.error.show { display: block; }
+.secure-badge {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>🔐 ChaCha20-Poly1305</h2>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="setMode('e')">🔒 Cifra</button>
+        <button class="tab" onclick="setMode('d')">🔓 Decifra</button>
+    </div>
+
+    <div id="encryptBox">
+        <div class="input-group">
+            <label>Testo da cifrare</label>
+            <textarea id="plainText" placeholder="Scrivi il messaggio..."></textarea>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="pass1" placeholder="Crea password sicura...">
+        </div>
+        <div class="input-group">
+            <label>Conferma Password</label>
+            <input type="password" id="pass2" placeholder="Ripeti la password...">
+        </div>
+        <button class="btn" onclick="encrypt()">CIFRA ORA</button>
+    </div>
+
+    <div id="decryptBox" style="display:none">
+        <div class="input-group">
+            <label>Testo cifrato (Base64)</label>
+            <textarea id="cipherText" placeholder="Incolla qui il testo cifrato..."></textarea>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="decPass" placeholder="Inserisci password...">
+        </div>
+        <button class="btn" onclick="decrypt()">DECIFRA ORA</button>
+    </div>
+
+    <div class="error" id="error"></div>
+    
+    <div class="result" id="result">
+        <div class="result-label" id="resLabel">Risultato</div>
+        <div class="result-text" id="resText"></div>
+        <button class="copy-btn" id="copyBtn" onclick="copyText()">📋 Copia negli appunti</button>
+    </div>
+
+    <div class="secure-badge">🔒 ChaCha20-Poly1305 AEAD • PBKDF2 100k iterazioni</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
+<script>
+let mode='e',lastResult='';
+
+function setMode(m){
+    mode=m;
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('encryptBox').style.display=m=='e'?'block':'none';
+    document.getElementById('decryptBox').style.display=m=='d'?'block':'none';
+    hideResult();hideError();
+}
+
+async function deriveKey(pass,salt){
+    const enc=new TextEncoder();
+    const keyMat=await crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveBits']);
+    const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:salt,iterations:100000,hash:'SHA-256'},keyMat,256);
+    return new Uint8Array(bits);
+}
+
+async function encrypt(){
+    const text=document.getElementById('plainText').value;
+    const p1=document.getElementById('pass1').value;
+    const p2=document.getElementById('pass2').value;
+    
+    if(!text||!p1)return showError('Compila tutti i campi');
+    if(p1!==p2)return showError('Le password non coincidono!');
+    if(p1.length<8)return showError('Password minimo 8 caratteri');
+    
+    try{
+        const salt=crypto.getRandomValues(new Uint8Array(32));
+        const key=await deriveKey(p1,salt);
+        const nonce=crypto.getRandomValues(new Uint8Array(24));
+        const box=nacl.secretbox(nacl.util.decodeUTF8(text),nonce,key);
+        const out=new Uint8Array(56+box.length);
+        out.set(salt);out.set(nonce,32);out.set(box,56);
+        lastResult=nacl.util.encodeBase64(out);
+        showResult('✅ Testo Cifrato',lastResult,true);
+    }catch(e){showError('Errore: '+e)}
+}
+
+async function decrypt(){
+    const text=document.getElementById('cipherText').value.replace(/\s/g,'');
+    const pass=document.getElementById('decPass').value;
+    
+    if(!text||!pass)return showError('Inserisci tutti i dati');
+    
+    try{
+        const data=nacl.util.decodeBase64(text);
+        if(data.length<56)throw'Dati invalidi';
+        const salt=data.slice(0,32),nonce=data.slice(32,56),box=data.slice(56);
+        const key=await deriveKey(pass,salt);
+        const dec=nacl.secretbox.open(box,nonce,key);
+        if(!dec)throw'Password erraria o dati corrotti';
+        lastResult=nacl.util.encodeUTF8(dec);
+        showResult('✅ Testo Decifrato',lastResult,false);
+    }catch(e){showError('Errore: '+e)}
+}
+
+function showResult(label,text,canCopy){
+    document.getElementById('resLabel').textContent=label;
+    document.getElementById('resText').textContent=text;
+    const r=document.getElementById('result');
+    r.classList.add('show');
+    const btn=document.getElementById('copyBtn');
+    btn.style.display=canCopy?'flex':'none';
+    btn.classList.remove('copied');
+    btn.innerHTML='📋 Copia negli appunti';
+    hideError();
+}
+
+async function copyText(){
+    try{
+        await navigator.clipboard.writeText(lastResult);
+        const btn=document.getElementById('copyBtn');
+        btn.classList.add('copied');
+        btn.innerHTML='✅ Copiato!';
+        setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='📋 Copia negli appunti'},2000);
+    }catch(e){showError('Copia fallita')}
+}
+
+function showError(msg){
+    const e=document.getElementById('error');
+    e.textContent=msg;e.classList.add('show');hideResult();
+}
+function hideError(){document.getElementById('error').classList.remove('show')}
+function hideResult(){document.getElementById('result').classList.remove('show')}
+</script>
+</body>
+</html>
 
